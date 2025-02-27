@@ -1,13 +1,13 @@
-package com.dev.propmanage;
+package app.mensal;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PropmanageApplication {
+public class MensalApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PropmanageApplication.class, args);
+		SpringApplication.run(MensalApplication.class, args);
 	}
 
 }

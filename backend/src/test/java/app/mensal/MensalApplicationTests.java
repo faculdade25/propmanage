@@ -1,10 +1,10 @@
-package com.dev.propmanage;
+package app.mensal;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PropmanageApplicationTests {
+class MensalApplicationTests {
 
 	@Test
 	void contextLoads() {
