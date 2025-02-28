@@ -9,7 +9,9 @@ import app.Repository.ContratoRepository;
 import app.Repository.LogRepository;
 import app.entity.Contrato;
 import app.entity.Log;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ContratoService {
 
 	@Autowired
@@ -20,7 +22,7 @@ public class ContratoService {
 	public void salvarLog(String action, String tabela, long entityid) {
 		Log log = new Log();
 		log.setAction(action);
-		log.setEntityid(entityid);
+		log.setEntityId(entityid);
 		//log.setNome(nome);
 		log.setTabela(tabela);
 		log.setTimestamp(LocalDateTime.now());

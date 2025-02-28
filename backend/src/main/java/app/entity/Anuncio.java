@@ -3,43 +3,28 @@ package app.entity;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 @Entity
 public class Anuncio {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private String nome;
-	private String dscritivo;
-	private LocalDateTime timestamp;
-	
-//getters e setters---------------------	
-	
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public String getDscritivo() {
-		return dscritivo;
-	}
-	public void setDscritivo(String dscritivo) {
-		this.dscritivo = dscritivo;
-	}
-	public LocalDateTime getTimestamp() {
-		return timestamp;
-	}
-	public void setTimestamp(LocalDateTime timestamp) {
-		this.timestamp = timestamp;
-	}
 
-	
-	
+	@NotNull
+	private String nome;
+
+	@NotNull
+	private String dscritivo;
+
+	private LocalDateTime timestamp;
 
 }

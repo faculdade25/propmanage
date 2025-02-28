@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import app.Repository.AnuncioRepository;
@@ -13,17 +14,19 @@ import app.Repository.LogRepository;
 import app.entity.Anuncio;
 import app.entity.Log;
 
+@Service
 public class AnuncioService {
 
 	@Autowired
 	private AnuncioRepository arepo;
+
 	@Autowired
 	private LogRepository lrepo;
 
 	public void salvarLog(String action, String tabela, long entityid) {
 		Log log = new Log();
 		log.setAction(action);
-		log.setEntityid(entityid);
+		log.setEntityId(entityid);
 		//log.setNome(nome);
 		log.setTabela(tabela);
 		log.setTimestamp(LocalDateTime.now());

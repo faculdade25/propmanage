@@ -2,6 +2,9 @@ package app.controller;
 
 import java.util.List;
 
+import app.entity.User;
+import app.security.Login;
+import app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +30,18 @@ public class ClienteController {
 	@Autowired
 	private ClienteService service;
 
+	private final UserService userService;
+	public ClienteController(UserService userService) {
+		this.userService = userService;
+	}
+
+	@PostMapping("/login")
+	public ResponseEntity<String> login(@RequestBody Login login) {
+		return ResponseEntity.ok(userService.logarUser(login));
+	}
+
 	@PostMapping("/save")
-	public ResponseEntity<String> save (@RequestBody Cliente cliente){
+	public ResponseEntity<String> save (@RequestBody User cliente){
 		try {
 			String message = this.service.save(cliente);
 			return new ResponseEntity<String> (message, HttpStatus.CREATED);
@@ -39,7 +52,7 @@ public class ClienteController {
 	}
 	
 	@PutMapping("/update/{id}")
-	public ResponseEntity<String> update (@RequestParam Long id, @RequestBody Cliente cliente){
+	public ResponseEntity<String> update (@RequestParam Long id, @RequestBody User cliente){
 		try {String message = this.service.update(id, cliente);
 		return new ResponseEntity<String> (message, HttpStatus.OK);
 		}catch(Exception e){
@@ -59,8 +72,8 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/listAll")
-	public ResponseEntity<List<Cliente>> listAll (){
-		try {List<Cliente> lista = this.service.listAll();
+	public ResponseEntity<List<User>> listAll (){
+		try {List<User> lista = this.service.listAll();
 		return new ResponseEntity<> (lista, HttpStatus.OK);
 		}catch(Exception e){
 			System.out.println(e.getMessage());
