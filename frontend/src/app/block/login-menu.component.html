@@ -1,0 +1,19 @@
+<section hlmCard style="background-color: #FCFCFC; border: 1px solid #D4D4D8; border-radius: 8px; padding: 20px;">
+    <div hlmCardHeader>
+        <h3 hlmCardTitle>Acesse sua conta</h3>
+        <p hlmCardDescription>Faça login para gerenciar seus dados em um só lugar.</p>
+    </div>
+    <div hlmCardContent>
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="space-y-4">
+            <label hlmLabel for="email">E-mail</label>
+            <input hlmInput id="email" name="email" [(ngModel)]="email" class="w-full hlmInput" type="email" placeholder="Digite seu e-mail" aria-label="E-mail" required />
+            <hlm-hint>Informe o e-mail cadastrado na plataforma.</hlm-hint>
+        
+            <label hlmLabel for="password">Senha</label>
+            <input hlmInput id="password" name="password" [(ngModel)]="password" class="w-full hlmInput" type="password" placeholder="Digite sua senha" aria-label="Senha" required />
+            <hlm-hint>Sua senha deve ter pelo menos 8 caracteres.</hlm-hint>
+        
+            <button hlmBtn class="bg-zinc-900 text-white w-full mt-2" type="submit">Entrar</button>
+        </form>
+    </div>
+</section>
