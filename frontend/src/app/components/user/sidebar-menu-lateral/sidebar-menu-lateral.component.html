@@ -1,0 +1,17 @@
+<nav class="sidebar" [class.collapsed]="!isVisible">
+    <div class="sidebar-content">
+      <div class="logo">
+        <span class="material-symbols-outlined">asterisk</span>
+      </div>
+  
+      <ul>
+        <p>Meu apartamento</p>
+        <li><a (click)="navigateTo('/user/dashboard')"><span class="material-symbols-outlined">dashboard</span>Dashboard</a></li>
+        <li><a (click)="navigateTo('/user/payments')"><i class="material-symbols-outlined">payments</i>Pagamentos</a></li>
+        <li><a (click)="navigateTo('/user/my-contracts')"><i class="material-symbols-outlined">contract</i>Meus Contratos</a></li>
+        <li><a (click)="navigateTo('/user/notifications')"><span class="material-symbols-outlined">notifications</span>Notificações</a></li>
+        <li><a (click)="navigateTo('/user/settings')"><span class="material-symbols-outlined">settings</span>Configurações</a></li>
+      </ul>
+      <button class="btn" (click)="navigateTo('/logout')">Sair</button>
+    </div>
+  </nav>
