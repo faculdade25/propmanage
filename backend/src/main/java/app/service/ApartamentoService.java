@@ -23,7 +23,7 @@ public class ApartamentoService {
 	public void salvarLog(String action, String tabela, long entityid) {
 		Log log = new Log();
 		log.setAction(action);
-		log.setEntityid(entityid);
+		log.setEntityId(entityid);
 		//log.setNome(nome);
 		log.setTabela(tabela);
 		log.setTimestamp(LocalDateTime.now());
@@ -38,8 +38,8 @@ public class ApartamentoService {
 		} else {// Encontrar o contrato ativo
 			Contrato contratoAtivo = contratos.stream().filter(Contrato::isStatus).findFirst().orElse(null);
 
-			if (contratoAtivo != null && contratoAtivo.getCliente() != null) {
-				ap.setStatus(contratoAtivo.getCliente().getNome());
+			if (contratoAtivo != null && contratoAtivo.getUser() != null) {
+				ap.setStatus(contratoAtivo.getUser().getFirstName() + " " + contratoAtivo.getUser().getLastName());
 			} else {
 				ap.setStatus("Livre");
 			}

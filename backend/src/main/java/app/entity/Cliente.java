@@ -1,93 +1,81 @@
 package app.entity;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-public class Cliente {
+import java.util.List;
 
+@Entity
+@Table(name = "cliente")  // nome da tabela no banco de dados
+@Getter
+@Setter
+public class Cliente implements UserDetails {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+
 	private String nome;
+
+	@Column(unique = true, nullable = false)
 	private long cpf;
 	private long rg;
 	private long telefone;
 	private String profissao;
+
+	@Column(unique = true, nullable = false)
 	private String email;
+
+	@NotNull
+	private String password;
+
+
 	private String nascimento;
 	private String pagamento;
-	
-	//relacao entre cliente e contrato
-	@OneToMany(mappedBy = "cliente")	
-	@JsonIgnoreProperties("cliente")
-	private List<Contrato> contratos;
-	
-	public List<Contrato> getContratos() {
-		return contratos;
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return List.of();
 	}
-	public void setContratos(List<Contrato> contratos) {
-		this.contratos = contratos;
+
+	@Override
+	public String getPassword() {
+		return "";
 	}
-	
-//getters e setters---------------------	
-	
-	public long getId() {
-		return id;
+
+	@Override
+	public String getUsername() {
+		return "";
 	}
-	public void setId(long id) {
-		this.id = id;
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return UserDetails.super.isAccountNonExpired();
 	}
-	public String getNome() {
-		return nome;
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return UserDetails.super.isAccountNonLocked();
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return UserDetails.super.isCredentialsNonExpired();
 	}
-	public long getCpf() {
-		return cpf;
+
+	@Override
+	public boolean isEnabled() {
+		return UserDetails.super.isEnabled();
 	}
-	public void setCpf(long cpf) {
-		this.cpf = cpf;
-	}
-	public long getRg() {
-		return rg;
-	}
-	public void setRg(long rg) {
-		this.rg = rg;
-	}
-	public long getTelefone() {
-		return telefone;
-	}
-	public void setTelefone(long telefone) {
-		this.telefone = telefone;
-	}
-	public String getProfissao() {
-		return profissao;
-	}
-	public void setProfissao(String profissao) {
-		this.profissao = profissao;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getNascimento() {
-		return nascimento;
-	}
-	public void setNascimento(String nascimento) {
-		this.nascimento = nascimento;
-	}
-	public String getPagamento() {
-		return pagamento;
-	}
-	public void setPagamento(String pagamento) {
-		this.pagamento = pagamento;
-	}
-	
-	
-	
-	
 }

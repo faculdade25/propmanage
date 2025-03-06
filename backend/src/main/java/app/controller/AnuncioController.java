@@ -28,8 +28,11 @@ import app.service.AnuncioService;
 @CrossOrigin("*")
 public class AnuncioController {
 
-	@Autowired
-	private AnuncioService service;
+	private final AnuncioService service;
+
+	public AnuncioController(AnuncioService service) {
+		this.service = service;
+	}
 	
 	@PostMapping("/save")
 	public ResponseEntity<String> save (@RequestBody Anuncio anuncio){

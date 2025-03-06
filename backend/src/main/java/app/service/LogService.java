@@ -19,7 +19,7 @@ public class LogService {
 	public void logaction(String action, String tabela, long entityid, String nome, LocalDateTime timestamp ) {
 		Log log = new Log();
 		log.setAction(action);
-		log.setEntityid(entityid);
+		log.setEntityId(entityid);
 		log.setNome(nome);
 		log.setTabela(tabela);
 		log.setTimestamp(timestamp);
