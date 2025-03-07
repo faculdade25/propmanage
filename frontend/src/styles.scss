@@ -1,8 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
-
-*{
-  font-family: 'Inter', sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+    font-family: 'Inter', sans-serif;
 }
 
 
@@ -53,3 +54,4 @@
     --ring: 240 4.9% 83.9%;
     color-scheme: dark;
   }
+
