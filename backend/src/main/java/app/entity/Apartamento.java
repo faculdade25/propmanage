@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
 @Entity
 @Table(name = "apartamento")
 @Getter
@@ -18,12 +17,21 @@ public class Apartamento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	private long apnum;
-	private String status;
-	private String fotos;
+	private int apnum;
 
-	// Relação entre Apartamento e Contrato
-	@OneToMany(mappedBy = "ap", cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonIgnoreProperties("ap")
+	@Enumerated(EnumType.STRING)
+	private StatusApartamento status;
+
+	@ManyToOne
+	@JoinColumn(name = "predio_id", nullable = false)
+	private Predio predio;
+
+	@OneToMany(mappedBy = "apartamento", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnoreProperties("apartamento")
 	private List<Contrato> contratos;
+
+	@Override
+	public String toString() {
+		return "Apartamento{id=" + id + ", apnum=" + apnum + ", status=" + status + "}";
+	}
 }

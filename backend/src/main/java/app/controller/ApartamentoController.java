@@ -2,9 +2,12 @@ package app.controller;
 
 import java.util.List;
 
+import app.entity.dto.ApartamentoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,54 +22,73 @@ import app.entity.Anuncio;
 import app.entity.Apartamento;
 import app.service.ApartamentoService;
 
-
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/apartamentos")
-@CrossOrigin("*")
+@RequestMapping("/apartamento")
 public class ApartamentoController {
-	
-	@Autowired
-	private ApartamentoService service;
+
+	private final ApartamentoService service;
+
+	public ApartamentoController(ApartamentoService service) {
+		this.service = service;
+	}
 
 	@PostMapping("/save")
-	public ResponseEntity<String> save (@RequestBody Apartamento ap){
+	public ResponseEntity<Apartamento> save(@RequestBody Apartamento ap) {
 		try {
-			String message = this.service.save(ap);
-			return new ResponseEntity<String> (message, HttpStatus.CREATED);
-		}catch (Exception e) {
-			System.out.println(e.getMessage());
-			return new ResponseEntity<String>("erro" + e.getMessage(), HttpStatus.BAD_REQUEST);
+			Apartamento savedAp = this.service.save(ap);
+			return new ResponseEntity<>(savedAp, HttpStatus.CREATED);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
 	@PutMapping("/update/{id}")
-	public ResponseEntity<String> update (@RequestParam Long apnum, @RequestBody Apartamento ap){
-		try {String message = this.service.update(apnum, ap);
-		return new ResponseEntity<String> (message, HttpStatus.OK);
-		}catch(Exception e){
-			System.out.println(e.getMessage());
-			return new ResponseEntity<String>( "erro"+ e.getMessage(), HttpStatus.BAD_REQUEST);
+	public ResponseEntity<Apartamento> update(@PathVariable Long id, @RequestBody Apartamento ap) {
+		try {
+			Apartamento updatedAp = this.service.update(id, ap);
+			return new ResponseEntity<>(updatedAp, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
-	
-	@DeleteMapping("/delete, {apnum}")
-	public ResponseEntity<String> delete (@RequestParam Long apnum){
-		try {String message = this.service.delete(apnum);
-		return new ResponseEntity<String> (message, HttpStatus.OK);
-		}catch(Exception e){
-			System.out.println(e.getMessage());
-			return new ResponseEntity<String>( "erro"+ e.getMessage(), HttpStatus.BAD_REQUEST);
+
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<Void> delete(@PathVariable Long id) {
+		try {
+			this.service.delete(id);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
 	@GetMapping("/listAll")
-	public ResponseEntity<List<Apartamento>> listAll (){
-		try {List<Apartamento> lista = this.service.listAll();
-		return new ResponseEntity<> (lista, HttpStatus.OK);
-		}catch(Exception e){
-			System.out.println(e.getMessage());
-			return new ResponseEntity<>( null, HttpStatus.BAD_REQUEST);
+	public ResponseEntity<List<Apartamento>> listAll() {
+		try {
+			return ResponseEntity.ok(this.service.listAll());
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+	}
+
+	@GetMapping("/get")
+	public ResponseEntity<List<ApartamentoDTO>> getAllRooms() {
+		try {
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			if (authentication == null || !authentication.isAuthenticated()) {
+				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+			}
+			List<ApartamentoDTO> lista = this.service.listOccupied(authentication.getName());
+			return ResponseEntity.ok(lista);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 	}
 }
