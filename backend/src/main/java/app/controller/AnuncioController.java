@@ -7,15 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import app.Repository.AnuncioRepository;
 import app.Repository.LogRepository;
@@ -33,45 +25,48 @@ public class AnuncioController {
 	public AnuncioController(AnuncioService service) {
 		this.service = service;
 	}
-	
-	@PostMapping("/save")
-	public ResponseEntity<String> save (@RequestBody Anuncio anuncio){
+
+	@PostMapping("/{predioId}/save")
+	public ResponseEntity<String> save(@PathVariable Long predioId, @RequestBody Anuncio anuncio) {
 		try {
-			String message = this.service.save(anuncio);
-			return new ResponseEntity<String> (message, HttpStatus.CREATED);
-		}catch (Exception e) {
+			String message = service.save(predioId, anuncio);
+			return ResponseEntity.status(HttpStatus.CREATED).body(message);
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			return new ResponseEntity<String>("erro" + e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-	}
-	
-	@PutMapping("/update/{id}")
-	public ResponseEntity<String> update (@RequestParam Long id, @RequestBody Anuncio anuncio){
-		try {String message = this.service.update(id, anuncio);
-		return new ResponseEntity<String> (message, HttpStatus.OK);
-		}catch(Exception e){
-			System.out.println(e.getMessage());
-			return new ResponseEntity<String>( "erro"+ e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-	}
-	
-	@DeleteMapping("/delete, {id}")
-	public ResponseEntity<String> delete (@RequestParam Long id){
-		try {String message = this.service.delete(id);
-		return new ResponseEntity<String> (message, HttpStatus.OK);
-		}catch(Exception e){
-			System.out.println(e.getMessage());
-			return new ResponseEntity<String>( "erro"+ e.getMessage(), HttpStatus.BAD_REQUEST);
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro: " + e.getMessage());
 		}
 	}
 
-	@GetMapping("/listAll")
-	public ResponseEntity<List<Anuncio>> listAll (){
-		try {List<Anuncio> lista = this.service.listAll();
-		return new ResponseEntity<> (lista, HttpStatus.OK);
-		}catch(Exception e){
+	@PutMapping("/{predioId}/update/{id}")
+	public ResponseEntity<String> update(@PathVariable Long predioId, @PathVariable Long id, @RequestBody Anuncio anuncio) {
+		try {
+			String message = service.update(predioId, id, anuncio);
+			return ResponseEntity.ok(message);
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			return new ResponseEntity<>( null, HttpStatus.BAD_REQUEST);
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro: " + e.getMessage());
+		}
+	}
+
+	@DeleteMapping("/{predioId}/delete/{id}")
+	public ResponseEntity<String> delete(@PathVariable Long predioId, @PathVariable Long id) {
+		try {
+			String message = service.delete(predioId, id);
+			return ResponseEntity.ok(message);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro: " + e.getMessage());
+		}
+	}
+
+	@GetMapping("/{predioId}/list")
+	public ResponseEntity<List<Anuncio>> listByPredio(@PathVariable Long predioId) {
+		try {
+			List<Anuncio> lista = service.listByPredio(predioId);
+			return ResponseEntity.ok(lista);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}
 	}
 	

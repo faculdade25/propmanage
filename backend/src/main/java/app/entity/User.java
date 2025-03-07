@@ -10,9 +10,20 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.Collection;
 import java.util.List;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import java.time.LocalDate;
+import java.util.Collection;
+import java.util.List;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @Getter
 @Setter
 public class User implements UserDetails {
@@ -22,11 +33,12 @@ public class User implements UserDetails {
     private Long id;
 
     @NotNull
-    private String firstName;
+    private String nome;
 
     @NotNull
-    private String lastName;
+    private String sobrenome;
 
+    @Email
     @Column(unique = true, nullable = false)
     private String email;
 
@@ -37,19 +49,24 @@ public class User implements UserDetails {
     private Role role;
 
     private String telefone;
-    private String cpf;
-    private String rg;
-    private String profissao;
-    private String nascimento;
-    private String pagamento;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties("user")
+    @Column(unique = true, nullable = false)
+    private String cpf;
+
+    @Column(unique = true, nullable = false)
+    private String rg;
+
+    private String profissao;
+
+    private LocalDate nascimento;
+
+    @OneToMany(mappedBy = "inquilino", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("inquilino")
     private List<Contrato> contratos;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(() -> "ROLE_" + role.name());
+        return List.of(new SimpleGrantedAuthority("ROLE_" + role.name()));
     }
 
     @Override
