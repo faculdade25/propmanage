@@ -3,5 +3,7 @@ package app.entity;
 public enum StatusPagamento {
     PENDENTE,
     PAGO,
-    ATRASADO
+    ATRASADO,
+    A_VENCER,
+    FUTURO
 }

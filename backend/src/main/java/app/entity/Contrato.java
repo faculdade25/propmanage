@@ -17,6 +17,7 @@ import lombok.Getter;
 import lombok.Setter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "contrato", indexes = {@Index(name = "idx_codigo_contrato", columnList = "codigoContrato")})
@@ -51,6 +52,8 @@ public class Contrato {
 	@NotNull
 	private LocalDate entrada;
 
+	private String emailAdmin;
+
 	private boolean ativo;
 
 	@Enumerated(EnumType.STRING)
@@ -65,6 +68,10 @@ public class Contrato {
 	@JoinColumn(name = "apartamento_id", nullable = false)
 	@JsonIgnoreProperties("contratos")
 	private Apartamento apartamento;
+
+	@OneToMany(mappedBy = "contrato", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnoreProperties("contrato")
+	private List<Pagamentos> pagamentos;
 
 	@NotNull
 	private LocalDate dataCriacao;

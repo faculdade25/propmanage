@@ -31,11 +31,14 @@ public class ContratoService {
 	private final PredioRepository predioRepository;
 	private final UserRepository userRepository;
 	private final UserService userService;
-	public ContratoService(ApartamentoRepository apartamentoRepository, PredioRepository predioRepository, UserRepository userRepository, UserService userService) {
+    private PagamentosService pagamentosService;
+
+	public ContratoService(ApartamentoRepository apartamentoRepository, PredioRepository predioRepository, UserRepository userRepository, UserService userService, PagamentosService pagamentosService) {
 		this.apartamentoRepository = apartamentoRepository;
 		this.predioRepository = predioRepository;
 		this.userRepository = userRepository;
 		this.userService = userService;
+		this.pagamentosService = pagamentosService;
 	}
 
 	public void salvarLog(String action, String tabela, long entityid) {
@@ -109,6 +112,7 @@ public class ContratoService {
 		contrato.setValorInternet(novoContratoDTO.getValorInternet());
 		contrato.setValorAluguel(novoContratoDTO.getValorAluguel());
 		contrato.setEntrada(novoContratoDTO.getEntrada());
+		contrato.setEmailAdmin(emailAdmin);
 		contrato.setAtivo(true);
 		contrato.setStatusPagamento(StatusPagamento.PENDENTE);
 		contrato.setApartamento(apartamento);
@@ -122,6 +126,7 @@ public class ContratoService {
 
 		crepo.save(contrato);
 		apartamento.setStatus(StatusApartamento.OCUPADO);
+		this.pagamentosService.gerarPagamentosParaContrato(contrato);
 		this.apartamentoRepository.save(apartamento);
 		return new ContratoDTO(contrato);
 	}
