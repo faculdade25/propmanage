@@ -15,8 +15,8 @@
                 <h1 class="title">Próximo pagamentos</h1>
                 <button class="btn">Pagar</button>
             </div>
-            <p class="desc">Vencimento em:</p>
-            <h1 class="amount">R$ 1200,00</h1>
+            <p class="desc">Vencimento em: {{nextVencimento}}</p>
+            <h1 class="amount">R$ {{nextPayment}}</h1>
         </div>
 
 
@@ -38,16 +38,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Janeiro</td>
-                            <td>R$ 1.000,00</td>
-                            <td>Pago</td>
-                            <td class="download">Download</td>
-                        </tr>
-                        <tr>
-                            <td>Fevereiro</td>
-                            <td>R$ 1.200,00</td>
-                            <td>Pendente</td>
+                        <tr *ngFor="let pagamento of allPayments">
+                            <td>{{pagamento.vencimento}}</td>
+                            <td>{{pagamento.valor}}</td>
+                            <td>{{pagamento.status}}</td>
                             <td class="download">Download</td>
                         </tr>
                     </tbody>

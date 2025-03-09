@@ -11,7 +11,7 @@
           <i class="material-symbols-outlined">payments</i>
         </div>
         <p class="desc">Próximo pagamento:</p>
-        <h1 class="amount">R$ 1200,00</h1>
+        <h1 class="amount">R$ {{ nextPayment }}</h1>
       </div>
       <div class="section">
         <div class="icon-pag">
@@ -37,15 +37,10 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Janeiro</td>
-                <td>R$ 1.000,00</td>
-                <td>Pago</td>
-              </tr>
-              <tr>
-                <td>Fevereiro</td>
-                <td>R$ 1.200,00</td>
-                <td>Pendente</td>
+              <tr *ngFor="let payment of lastPayments">
+                <td>{{ payment.vencimento }}</td>
+                <td>R$ {{ payment.valor | number:'1.2-2' }}</td>
+                <td>{{ payment.status }}</td>
               </tr>
             </tbody>
           </table>
@@ -64,15 +59,10 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Janeiro</td>
-                <td>uuuuuuuu</td>
-                <td>Pago</td>
-              </tr>
-              <tr>
-                <td>Fevereiro</td>
-                <td>R$ 1.200,00</td>
-                <td>Pendente</td>
+              <tr *ngFor="let notification of lastNotifications">
+                <td>{{notification.data}}</td>
+                <td>{{notification.titulo}}</td>
+                <td>{{notification.status}}</td>
               </tr>
             </tbody>
           </table>

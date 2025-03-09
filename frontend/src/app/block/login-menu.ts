@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { JwtPayload } from 'jwt-decode';
 import {
     HlmCardContentDirective,
     HlmCardDescriptionDirective,
@@ -8,6 +9,7 @@ import {
     HlmCardHeaderDirective,
     HlmCardTitleDirective,
 } from '@spartan-ng/ui-card-helm';
+
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
@@ -16,6 +18,13 @@ import { environment } from '../../../enviroments/enviroment';
 import axios, { AxiosResponse } from 'axios';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
+
+
+interface CustomJwtPayload {
+    role: string;
+    exp: number;
+}
 
 @Component({
     selector: 'app-login-menu',
@@ -34,17 +43,20 @@ import { Router } from '@angular/router';
     templateUrl: './login-menu.component.html',
     styleUrls: ['./login.component.scss']
 })
+
 export class LoginMenuComponent {
-    
+
+    email: string = '';
+    password: string = '';
 
     constructor(private cookieService: CookieService, private router: Router) {
-        this.checkAuth()
+        this.checkAuth();
     }
 
-    checkAuth(){
-        this.getCookie();
-        if(this.cookieService.get('acs') != ''){
-           this.router.navigate(['/home']);
+    checkAuth() {
+        const jwt = this.getCookie();
+        if (jwt && this.isJwtValid(jwt)) {
+            this.redirecter(jwt);
         }
     }
 
@@ -52,23 +64,35 @@ export class LoginMenuComponent {
         this.cookieService.set('acs', data, { expires: 1, sameSite: 'Lax' });
     }
 
-    getCookie() {
-        const token = this.cookieService.get('acs');
+    getCookie(): string {
+        return this.cookieService.get('acs');
     }
 
-    email: string = '';
-    password: string = '';
+    isJwtValid(token: string): boolean {
+        try {
+            const decoded = jwtDecode<CustomJwtPayload>(token);
+            return decoded.exp * 1000 > Date.now();
+        } catch (error) {
+            return false;
+        }
+    }
+
+    redirecter(token: string) {
+        const decoded = jwtDecode<CustomJwtPayload>(token);
+        if (decoded.role === 'admin') {
+            this.router.navigate(['/admin']);
+        } else {
+            this.router.navigate(['/user']);
+        }
+    }
 
     onSubmit() {
-        const loginData = {
-            email: this.email,
-            password: this.password
-        };
+        const loginData = { email: this.email, password: this.password };
 
         axios.post(`${environment.apiUrl}/api/v1/user/login`, loginData)
             .then((response: AxiosResponse) => {
                 this.setCookie(response.data);
-                this.getCookie();
+                this.checkAuth(); 
             })
             .catch((error) => {
                 console.error('Login error:', error);
