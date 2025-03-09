@@ -1,16 +1,21 @@
 package app.controller;
 
 import app.entity.Pagamentos;
+import app.entity.dto.PagamentoDTO;
+import app.entity.dto.PagamentoResumoDTO;
 import app.service.PagamentosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/payments")
 @CrossOrigin("*")
 public class PagamentosController {
 
@@ -61,5 +66,59 @@ public class PagamentosController {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
+
+    @GetMapping("/proximo")
+    public ResponseEntity<PagamentoDTO> getProximoPagamento(@AuthenticationPrincipal UserDetails userDetails) {
+        try {
+            String email = userDetails.getUsername();
+            return ResponseEntity.ok(service.getProximoPagamento(email));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+    }
+
+    @GetMapping("/ultimos")
+    public ResponseEntity<List<PagamentoDTO>> getUltimosPagamentos(@AuthenticationPrincipal UserDetails userDetails) {
+        String email = userDetails.getUsername();
+        return ResponseEntity.ok(service.getUltimosPagamentos(email));
+    }
+
+    @GetMapping("/todos")
+    public ResponseEntity<List<PagamentoDTO>> getTodosPagamentos(@AuthenticationPrincipal UserDetails userDetails) {
+        String email = userDetails.getUsername();
+        return ResponseEntity.ok(service.getTodosPagamentos(email));
+    }
+
+    //admin
+
+    @GetMapping("/total-pagos")
+    public ResponseEntity<BigDecimal> getTotalPagamentosPagos(@AuthenticationPrincipal UserDetails userDetails) {
+        String email = userDetails.getUsername();
+        BigDecimal total = service.getTotalPagamentosPagosNoMes(email);
+        return ResponseEntity.ok(total);
+    }
+
+    @GetMapping("/total-pendentes")
+    public ResponseEntity<BigDecimal> getTotalPagamentosPendentes(@AuthenticationPrincipal UserDetails userDetails) {
+        String email = userDetails.getUsername();
+        BigDecimal total = service.getTotalPagamentosPendentesNoMes(email);
+        return ResponseEntity.ok(total);
+    }
+
+    @GetMapping("/pendentes")
+    public ResponseEntity<List<PagamentoResumoDTO>> getPagamentosPendentes(@AuthenticationPrincipal UserDetails userDetails) {
+        String email = userDetails.getUsername();
+        List<PagamentoResumoDTO> pagamentos = service.getPagamentosPendentes(email);
+        return ResponseEntity.ok(pagamentos);
+    }
+
+    @GetMapping("/predio/todos")
+    public ResponseEntity<List<Pagamentos>> getTodosPagamentosPredio(@AuthenticationPrincipal UserDetails userDetails) {
+        String email = userDetails.getUsername();
+        List<Pagamentos> pagamentos = service.getTodosPagamentosDoPredio(email);
+        return ResponseEntity.ok(pagamentos);
+    }
+
 
 }
