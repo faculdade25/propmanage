@@ -1,81 +1,141 @@
 /* styles.css */
 
 .sidebar {
-    width: 15vw;
-    height: 100vh;
-    background: #FFFF;
-    position: fixed;
-    top: 0;
-    left: 0;
-    border-right: 1px solid #999999;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-   }
+   width: 256px;
+   height: 100vh;
+   background: #FFFF;
+   border-right: 1px solid #999999;
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+}
 
-.sidebar-header{
+.sidebar-header-holder {
+   display: flex;
+   flex-direction: row;
+   margin: 8px;
+}
+
+.sidebar-header {
    display: flex;
    justify-content: start;
    align-items: center;
-    height: 10%;
-    background-color:#FFFF;
-    padding-left: 30px;
-
+   margin: 8px;
+   gap: 8px;
 }
 
-.sidebar-header h1{
-   margin: 0;
-   margin-left: 5px;
+.sidebar-header h1 {
    font-family: 'Inter';
    font-style: normal;
    font-weight: 600;
-   font-size: 20px;
+   font-size: 14px;
    line-height: 14px;
    color: #3F3F46;
+   flex: none;
+   order: 0;
+   align-self: stretch;
+   flex-grow: 0;
 
 }
 
-.sidebar-header h3{
-    margin: 0;
-    margin-top: 5px;
-    margin-left: 5px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 12px;
-    color: #3F3F46; 
-
- }
-
- .sidebar-body {
-   flex: 1;
-   background-color: #FFFF;
-   padding: 30px;
+.sidebar-header p {
+   font-family: 'Inter';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 12px;
+   line-height: 12px;
+   color: #3F3F46;
+   flex: none;
+   order: 1;
+   flex-grow: 0;
 }
 
- .sidebar-body h1{
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 16px;
-    color: rgba(63, 63, 70, 0.8);
-    margin-top: 20px;
- }
+.sidebar-content {
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+}
 
- .sidebar-body p{
-    margin: 0;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 14px;
-    color: #3F3F46;
-    margin-left: 5px;
- }
+.sidebar-group {
+   display: flex;
+   flex-direction: column;
+   margin: 8px;
+}
 
- .sidebar-footer {
+.groudtitle {
+   display: flex;
+   flex-direction: column;
+   margin: 8px;
+}
+
+.navItem {
+   height: 32px;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   padding-left: 8px;
+   padding-right: 8px;
+   gap: 8px;
+}
+
+.navItem:hover {
+   background-color: #E3E3E3;
+   border-radius: 4px;
+}
+
+.active {
+   background-color: #E3E3E3;
+   border-radius: 4px;
+}
+
+.navItem p {
+   font-family: 'Inter';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 14px;
+   color: #3F3F46;
+   flex: none;
+   order: 1;
+   flex-grow: 1;
+}
+
+.title {
+   font-family: 'Inter';
+   font-style: normal;
+   font-weight: 500;
+   font-size: 12px;
+   line-height: 16px;
+   color: rgba(63, 63, 70, 0.8);
+   flex: none;
+   order: 0;
+   align-self: stretch;
+   flex-grow: 0;
+
+}
+
+.sidebar-body h1 {
+   font-family: 'Inter';
+   font-style: normal;
+   font-weight: 500;
+   font-size: 16px;
+   line-height: 16px;
+   color: rgba(63, 63, 70, 0.8);
+   margin-top: 20px;
+}
+
+.sidebar-body p {
+   margin: 0;
+   font-family: 'Inter';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 18px;
+   line-height: 14px;
+   color: #3F3F46;
+   margin-left: 5px;
+}
+
+.sidebar-footer {
    height: 10%;
    background-color: #FFFF;
    padding-left: 30px;
@@ -84,7 +144,7 @@
 
 }
 
- .sidebar-footer h1{
+.sidebar-footer h1 {
    margin: 0;
    margin-left: 5px;
    font-family: 'Inter';
@@ -96,15 +156,15 @@
 
 }
 
-.sidebar-footer h3{
-    margin: 0;
-    margin-top: 5px;
-    margin-left: 5px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 10px;
-    line-height: 12px;
-    color: #3F3F46; 
+.sidebar-footer h3 {
+   margin: 0;
+   margin-top: 5px;
+   margin-left: 5px;
+   font-family: 'Inter';
+   font-style: normal;
+   font-weight: 400;
+   font-size: 10px;
+   line-height: 12px;
+   color: #3F3F46;
 
- }
+}

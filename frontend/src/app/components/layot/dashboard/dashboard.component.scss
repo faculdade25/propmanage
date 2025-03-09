@@ -1,27 +1,156 @@
-.dashboard{
-    width: 85vw;
-    height: 100vh;
-    position: absolute;
-    right: 0;
-    top: 0;
+.dashboard {
     display: flex;
-    justify-content: center;
-    align-items: center;
-
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 32px 64px;
+    gap: 10px;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 1;
 }
 
-.container{
-    width: 70vw;
-    height: 90vh;
+.mainContentWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 1;
 }
 
-.container h1{
+.greeting {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 24px 0px;
+    gap: 10px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.greeting h1 {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 35px;
+    font-size: 24px;
     line-height: 28px;
     color: #3F3F46;
-
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
 
+.summary {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.card {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    border: 1px solid rgba(63, 63, 70, 0.8);
+    border-radius: 8px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 1;
+}
+
+.cardHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 24px;
+    gap: 8px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.cardContent {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px 24px 24px;
+    gap: 10px;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.mainValue {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000000;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.paymentContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 6px;
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+}
+
+.paymentContent h2 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 14px;
+    color: #090909;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.paymentContent p {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: rgba(63, 63, 70, 0.8);
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.details {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+    flex: none;
+    order: 2;
+    align-self: stretch;
+    flex-grow: 1;
+}
