@@ -1,18 +1,32 @@
 import { Component } from '@angular/core';
-import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
-import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
-import { FormsModule } from '@angular/forms'; 
+import { MatDialogRef } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider'; 
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-usuariosdetails',
   standalone: true,
-  imports: [ MdbFormsModule, FormsModule, CommonModule],
+  imports: [ 
+    CommonModule,
+    FormsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatDividerModule // <– Adicione aqui
+  ],
   templateUrl: './usuariosdetails.component.html',
-  styleUrl: './usuariosdetails.component.scss'
+  styleUrls: ['./usuariosdetails.component.scss']
 })
 export class UsuariosdetailsComponent {
-  constructor(public modalRef: MdbModalRef<UsuariosdetailsComponent>) {}
+  constructor(
+    public dialogRef: MatDialogRef<UsuariosdetailsComponent>
+  ) {}
 
-
+  fechar(): void {
+    this.dialogRef.close();
+  }
 }

@@ -1,19 +1,26 @@
 import { Component } from '@angular/core';
-import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
-import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { FormsModule } from '@angular/forms'; 
 import { CommonModule } from '@angular/common';
-
+import { MatDialogRef } from '@angular/material/dialog';
+import { NotificacoesdetailsComponent } from '../../notificacoes/notificacoesdetails/notificacoesdetails.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-contratosdetails',
   standalone: true,
-  imports: [ MdbFormsModule, FormsModule, CommonModule],
+  imports: [ FormsModule, CommonModule, MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatButtonModule],
   templateUrl: './contratosdetails.component.html',
   styleUrl: './contratosdetails.component.scss'
 })
 export class ContratosdetailsComponent {
-  constructor(public modalRef: MdbModalRef<ContratosdetailsComponent>) {}
+  
+  constructor(public modalRef: MatDialogRef<NotificacoesdetailsComponent>) {}
 
   opcoes = [
     { value: 'opcao1', label: 'Opção 1' },

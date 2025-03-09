@@ -1,102 +1,93 @@
 <div>
-<div class="modal-header">
+  <div class="modal-header">
     <div style="display: flex; flex-direction: column;">
-    <h5 class="modal-title" id="exampleModalLabel"> Novo Contrato</h5>
-    <p class="card-text">Registre um novo contrato para um apartamento. Preencha as informações do inquilino, defina as condições do contrato e a data de vigência. Certifique-se de que todos os dados estão corretos antes de confirmar.  </p>
-    <h5 class="modal-title" id="exampleModalLabel">  Perfil</h5>
-    <p class="card-text">Nesta seção, você pode cadastrar um novo inquilino e definir suas informações básicas.
-        Para alterações em dados sensíveis, como documento de identificação para emissão de faturas, entre em contato com o suporte. </p>
-</div>
-
-    
+      <h5 class="modal-title">Novo Contrato</h5>
+      <p class="card-text">
+        Registre um novo contrato para um apartamento. Preencha as informações do inquilino, defina as condições do contrato e a data de vigência. Certifique-se de que todos os dados estão corretos antes de confirmar.
+      </p>
+      <h5 class="modal-title">Perfil</h5>
+      <p class="card-text">
+        Nesta seção, você pode cadastrar um novo inquilino e definir suas informações básicas. Para alterações em dados sensíveis, como documento de identificação para emissão de faturas, entre em contato com o suporte.
+      </p>
+    </div>
   </div>
+
   <div class="modal-body">
     <div class="row">
-        <div class="col">
-          <!-- Name input -->
-          <mdb-form-control>
-            <input mdbInput type="text" id="form8Example1" class="form-control" />
-            <label mdbLabel class="form-label" for="form8Example1">Primeiro Nome</label>
-          </mdb-form-control>
-        </div>
-        <div class="col">
-          <!-- Email input -->
-          <mdb-form-control>
-            <input mdbInput type="email" id="form8Example2" class="form-control" />
-            <label mdbLabel class="form-label" for="form8Example2">Último nome</label>
-          </mdb-form-control>
-        </div>
+      <div class="col">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Primeiro Nome</mat-label>
+          <input matInput type="text" />
+        </mat-form-field>
       </div>
-      
-      <hr />
-      
-      <div class="row">
-        <div class="col">
-          <!-- Name input -->
-          <mdb-form-control>
-            <input mdbInput type="text" id="form8Example3" class="form-control" />
-            <label mdbLabel class="form-label" for="form8Example3"> Data de Nascimento</label>
-          </mdb-form-control>
-        </div>
-        <div class="col">
-          <!-- Name input -->
-          <mdb-form-control>
-            <input mdbInput type="text" id="form8Example4" class="form-control" />
-            <label mdbLabel class="form-label" for="form8Example4">RG</label>
-          </mdb-form-control>
-        </div>
-        <div class="col">
-          <!-- Email input -->
-          <mdb-form-control>
-            <input mdbInput type="email" id="form8Example5" class="form-control" />
-            <label mdbLabel class="form-label" for="form8Example5">CPF</label>
-          </mdb-form-control>
-        </div>
+      <div class="col">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Último Nome</mat-label>
+          <input matInput type="text" />
+        </mat-form-field>
       </div>
+    </div>
 
-      <hr />
-      
-      <div class="row">
-        <div class="col">
-          <!-- Name input -->
-          <mdb-form-control>
-            <input mdbInput type="text" id="form8Example3" class="form-control" />
-            <label mdbLabel class="form-label" for="form8Example3"> Profissão</label>
-          </mdb-form-control>
-        </div>
-        <div class="col">
-          <!-- Name input -->
-          <mdb-form-control>
-            <input mdbInput type="text" id="form8Example4" class="form-control" />
-            <label mdbLabel class="form-label" for="form8Example4">Remuneração</label>
-          </mdb-form-control>
-        </div>
+    <hr />
 
-        <p style="text-align: center; margin-top: 5px;">ou</p>
-
-        <div class="col-12">
-            <mdb-form-control>
-              <select mdbInput id="form8Example5" class="form-control">
-                <option value="" disabled selected>Selecione um inquilo 
-                </option>
-                <option value="option1">Opção 1</option>
-                <option value="option2">Opção 2</option>
-                <option value="option3">Opção 3</option>
-                <option value="option4">Opção 4</option>
-              </select>
-            </mdb-form-control>
-          </div>
-
-                    
-
+    <div class="row">
+      <div class="col">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Data de Nascimento</mat-label>
+          <input matInput type="date" />
+        </mat-form-field>
       </div>
+      <div class="col">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>RG</mat-label>
+          <input matInput type="text" />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>CPF</mat-label>
+          <input matInput type="text" />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+      <div class="col">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Profissão</mat-label>
+          <input matInput type="text" />
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Remuneração</mat-label>
+          <input matInput type="number" />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 5px;">ou</p>
+
+    <div class="row">
+      <div class="col-12">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Selecione um inquilino</mat-label>
+          <mat-select>
+            <mat-option value="option1">Opção 1</mat-option>
+            <mat-option value="option2">Opção 2</mat-option>
+            <mat-option value="option3">Opção 3</mat-option>
+            <mat-option value="option4">Opção 4</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
   </div>
+
   <div class="modal-footer">
     <a href="/admin/contratos2">
-    <button type="button" class="btn" style="background-color: #0F172A; color: white;"> Próximo </button>
+      <button mat-raised-button color="primary">Próximo</button>
     </a>
   </div>
-
-
-
-  
+</div>

@@ -1,30 +1,23 @@
 import { Component } from '@angular/core';
-import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
-import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
+import { MatDialog } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ApartamentosdetailsComponent } from './apartamentosdetails/apartamentosdetails.component';
-
 
 @Component({
   selector: 'app-apartamentos',
   standalone: true,
-  imports: [ MdbModalModule,],
+  imports: [MatDialogModule],
   templateUrl: './apartamentos.component.html',
   styleUrl: './apartamentos.component.scss'
 })
 export class ApartamentosComponent {
+  constructor(private dialog: MatDialog) {}
 
-  modalRef: MdbModalRef<ApartamentosdetailsComponent> | null = null;
-
-    constructor(private modalService: MdbModalService) {}
-
-    openModal() {
-      this.modalRef = this.modalService.open(ApartamentosdetailsComponent, {
-        modalClass: 'modal-dialog-centered'
-      })
-    }
-
+  openModal() {
+    this.dialog.open(ApartamentosdetailsComponent, {
+      panelClass: ['max-w-2xl', 'mx-auto'], 
+      width: '90%',
+      height: 'auto'
+    });
+  }
 }
-
-
-
-

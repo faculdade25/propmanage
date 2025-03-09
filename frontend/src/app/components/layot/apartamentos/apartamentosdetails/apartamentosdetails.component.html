@@ -1,21 +1,22 @@
 <div class="modal-header">
-    <div style="display: flex; flex-direction: column;">
-    <h5 class="modal-title" id="exampleModalLabel"> Adicionar Novo Apartamento</h5>
-    <p class="card-text">Preencha as informações abaixo para cadastrar um novo apartamento no sistema. Certifique-se de inserir os dados corretamente para manter a organização da gestão do condomínio. </p>
-    </div>
-
-    
+  <div style="display: flex; flex-direction: column;">
+    <h2 class="modal-title">Adicionar Novo Apartamento</h2>
+    <p class="card-text">
+      Preencha as informações abaixo para cadastrar um novo apartamento no sistema. 
+      Certifique-se de inserir os dados corretamente para manter a organização da gestão do condomínio.
+    </p>
   </div>
-  <div style="display: flex; justify-content: space-evenly; align-items: center;" class="modal-body">
-    <mdb-form-control>
-        <input mdbInput type="text" id="form1" class="form-control" />
-        <label mdbLabel class="form-label" for="form1">Número do Apartamento</label>
-      </mdb-form-control>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn" style="background-color: #0F172A; color: white;"> Criar </button>
-  </div>
+</div>
 
+<div class="modal-body" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Número do Apartamento</mat-label>
+    <input matInput type="text">
+  </mat-form-field>
+</div>
 
-
-
+<div class="modal-footer" style="display: flex; justify-content: flex-end;">
+  <button mat-button color="primary" (click)="closeModal()" style="background-color: #0F172A; color: white;">
+    Criar
+  </button>
+</div>

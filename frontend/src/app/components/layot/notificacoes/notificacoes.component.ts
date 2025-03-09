@@ -1,25 +1,23 @@
 import { Component } from '@angular/core';
-import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
-import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 import { NotificacoesdetailsComponent } from './notificacoesdetails/notificacoesdetails.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog'; // <-- Nova importação
 
 @Component({
   selector: 'app-notificacoes',
   standalone: true,
-  imports: [ MdbModalModule],
+  imports: [ MatDialogModule],
   templateUrl: './notificacoes.component.html',
   styleUrl: './notificacoes.component.scss'
 })
 export class NotificacoesComponent {
+  constructor(private dialog: MatDialog) {} // <-- Nova injeção
 
-   modalRef: MdbModalRef<NotificacoesdetailsComponent> | null = null;
-    
-        constructor(private modalService: MdbModalService) {}
-    
-        openModal() {
-          this.modalRef = this.modalService.open(NotificacoesdetailsComponent, {
-            modalClass: 'modal-dialog-centered'
-          })
-        }
-
+  openModal() {
+    this.dialog.open(NotificacoesdetailsComponent, { // <-- Nova sintaxe
+      panelClass: ['max-w-2xl', 'mx-auto'], // Estilo Tailwind
+      width: '90%', // Largura personalizada
+      height: 'auto'
+    });
+  }
 }

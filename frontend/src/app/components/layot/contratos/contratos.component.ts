@@ -1,25 +1,24 @@
 import { Component } from '@angular/core';
-import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
-import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
+import { MatDialog } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ContratosdetailsComponent } from './contratosdetails/contratosdetails.component';
 
 @Component({
   selector: 'app-contratos',
   standalone: true,
-  imports: [ MdbModalModule,],
+  imports: [MatDialogModule],
   templateUrl: './contratos.component.html',
-  styleUrl: './contratos.component.scss'
+  styleUrls: ['./contratos.component.scss']
 })
 export class ContratosComponent {
 
-  modalRef: MdbModalRef<ContratosdetailsComponent> | null = null;
-  
-      constructor(private modalService: MdbModalService) {}
-  
-      openModal() {
-        this.modalRef = this.modalService.open(ContratosdetailsComponent, {
-          modalClass: 'modal-dialog-centered'
-        })
-      }
+  constructor(private dialog: MatDialog) {} 
 
+  openModal() {
+    this.dialog.open(ContratosdetailsComponent, {
+      width: '600px', 
+      maxWidth: '90vw',
+      panelClass: 'custom-dialog-container', 
+    });
+  }
 }
