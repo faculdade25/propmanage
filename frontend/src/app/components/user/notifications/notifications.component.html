@@ -26,17 +26,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>23/02/2025 14:30</td>
-                            <td>Alerta</td>
-                            <td>Reforma das escadas</td>
+                        <tr *ngFor="let notification of lastNotifications">
+                            <td>{{notification.data}}</td>
+                            <td>{{notification.titulo}}</td>
+                            <td>{{notification.status}}</td>
                         </tr>
-                        <tr>
-                            <td>23/02/2025 14:30</td>
-                            <td>Alerta</td>
-                            <td>Reforma das escadas</td>
-                        </tr>
-                    </tbody>
                 </table>
             </div>
 
