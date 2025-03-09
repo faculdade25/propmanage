@@ -30,6 +30,7 @@ public class JwtServiceGenerator {
         extraClaims.put("name", userDetails.getNome());
         extraClaims.put("id", userDetails.getId().toString());
         extraClaims.put("Role", userDetails.getRole());
+        extraClaims.put("buildingId", userDetails.getContratos().get(1).getApartamento().getPredio().getId());
 
 
         return Jwts

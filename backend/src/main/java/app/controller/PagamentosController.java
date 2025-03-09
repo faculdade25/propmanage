@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/payments")
 @CrossOrigin("*")
 public class PagamentosController {
 
@@ -69,8 +69,13 @@ public class PagamentosController {
 
     @GetMapping("/proximo")
     public ResponseEntity<PagamentoDTO> getProximoPagamento(@AuthenticationPrincipal UserDetails userDetails) {
-        String email = userDetails.getUsername();
-        return ResponseEntity.ok(service.getProximoPagamento(email));
+        try {
+            String email = userDetails.getUsername();
+            return ResponseEntity.ok(service.getProximoPagamento(email));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
     }
 
     @GetMapping("/ultimos")
@@ -84,6 +89,8 @@ public class PagamentosController {
         String email = userDetails.getUsername();
         return ResponseEntity.ok(service.getTodosPagamentos(email));
     }
+
+    //admin
 
     @GetMapping("/total-pagos")
     public ResponseEntity<BigDecimal> getTotalPagamentosPagos(@AuthenticationPrincipal UserDetails userDetails) {

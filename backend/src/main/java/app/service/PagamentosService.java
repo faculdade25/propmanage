@@ -149,6 +149,8 @@ public class PagamentosService {
             Pagamentos pagamento = new Pagamentos();
             pagamento.setContrato(contrato);
             pagamento.setVencimento(vencimento);
+            pagamento.setIdApartamento(contrato.getApartamento().getId());
+            pagamento.setTitular(contrato.getTitular());
             pagamento.setValor(contrato.getValorAluguel().add(contrato.getValorCondominio()).add(contrato.getValorIptu()).add(contrato.getValorInternet()));
             pagamento.setStatus(StatusPagamento.FUTURO);
 
