@@ -1,36 +1,36 @@
-<div class="notificacoes">
-    <div class="container">
-        <div style="display: flex; justify-content: space-between;">
+<div style="padding-left: 32px; padding-right: 32px; padding: 32px; display: flex; flex-direction: column;">
+    <div class="greeting" style="display: flex; justify-content: space-between;">
         <h1>Notificações</h1>
-        <button type="button" (click)="openModal()" class="btn"  style="background-color: #0F172A; color: white;">  Novo </button>
+        <button type="button" (click) ="openModal()" class="btn" style="background-color: #0F172A; color: white;">Novo</button>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="paymentContent">
+            <h2 class="card-title">Central de Notificações</h2>
+            <p class="card-text">Acompanhe todas as comunicações importantes em um só lugar. Envie avisos para os inquilinos, lembretes de pagamento e notificações sobre manutenção de forma rápida e eficiente.</p>
         </div>
-        <div style="margin-top: 20px;" class="card border border-dark me-3">
-            <div class="card-body d-flex align-items-center">
-              <div style="margin-right: 10px;">
-                <h5 class="card-title">Lista de Contratos</h5>
-                <p class="card-text">Confira todos os contratos ativos e expirados dos apartamentos. Aqui você pode visualizar detalhes, atualizar informações ou adicionar novos contratos para garantir uma gestão eficiente.</p>
-                <table style="background-color: #F4F4F5; border-radius: 10px;" class="table">
-                    <thead>
-                        <tr>
-                            <th>DATA</th>
-                            <th>MENSAGEM</th>
-                            <th>STATUS</th>
-                            <th>AÇÕES</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="background-color: white; border-radius: 500px;">
-                            <td>19/02/2025</td>
-                            <td> FALTA DE ENERGIA </td>
-                            <td><button type="button" class="btn btn-outline-success btn-rounded" mdbRipple rippleColor="dark">Resolvido</button></td>
-                            <td (click)="openModal()" style="color: #007AFF;">Editar</td>
-                        </tr>
-                    </tbody>
-                </table>
-              </div>
-           
-            </div>
-          </div>
+        <table style="background-color: #F4F4F5; border-radius: 10px; width: 100%;" class="table">
+            <thead>
+                <tr>
+                    <th>DATA</th>
+                    <th>MENSAFEM</th>
+                    <th>STATUS</th>
+                    <th>AÇÕES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background-color: white;">
+                    <td>19/02/2025</td>
+                    <td>FALTA DE ENERGIA</td>
+                    <td><span class="status deferido">DEFERIDO</span></td>
+                    <td style="color: #007AFF; cursor: pointer;" (click) ="openModal()" >Editar</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
+
+
+
+
+
 
