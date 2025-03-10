@@ -1,4 +1,4 @@
-.pagamentos{
+.contratos{
     width: 85vw;
     height: 100vh;
     position: absolute;
@@ -14,7 +14,7 @@
     height: 90vh;
 }
 
-.pagamentos h1{
+.contratos h1{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
@@ -22,4 +22,339 @@
     line-height: 28px;
     color: #3F3F46;
 
+}
+
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 32px 64px;
+    gap: 10px;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 1;
+}
+
+.mainContentWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 1;
+}
+
+.greeting {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 24px 0px;
+    gap: 10px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.greeting h1 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    color: #3F3F46;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.summary {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.card {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    border: 1px solid rgba(63, 63, 70, 0.8);
+    border-radius: 8px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 1;
+}
+
+.cardHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 24px;
+    gap: 8px;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.cardContent {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px 24px 24px;
+    gap: 10px;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.mainValue {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000000;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.paymentContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 6px;
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+}
+
+.paymentContent h2 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 14px;
+    color: #090909;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.paymentContent p {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: rgba(63, 63, 70, 0.8);
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.details {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+    flex: none;
+    order: 2;
+    align-self: stretch;
+    flex-grow: 1;
+}
+
+.container {
+    max-width: 800px;
+    background: #F2F2F2;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #f5f5f5;
+    font-weight: bold;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.pendente {
+    background: #f8e5a1;
+    color: #9c7b16;
+}
+
+.deferido {
+    background: #bff0d3;
+    color: #1b7d46;
+}
+
+.previsto {
+    background: #e0e0e0;
+    color: #666;
+}
+
+.editar {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.editar:hover {
+    text-decoration: underline;
+}
+
+
+
+.apartamentos {
+
+    padding-left: 64px;
+    padding-right: 64px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+}
+
+.apartamentos h1 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 28px;
+    color: #3F3F46;
+
+}
+
+.ap {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 16px 24px;
+    gap: 10px;
+    width: 120px;
+    max-width: 120px;
+    height: 150px;
+    max-height: 150px;
+    background: #555555;
+    border-radius: 8px;
+    border: 1px solid #3F3F46CC;
+    margin-top: 3px;
+}
+
+.number-ap {
+    width: 72px;
+    height: 36px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 36px;
+    text-align: center;
+    color: white;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.ocupado{
+    background-color: #FF3B30;
+    color: white;
+}
+
+.vago {
+    background-color: #34C759;
+    color: white;
+}
+
+.header {
+    gap: 16px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.tittleAndButton {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+}
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 32px;
+}
+
+.paymentContent h2 {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 14px;
+    color: #090909;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.paymentContent p {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: rgba(63, 63, 70, 0.8);
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
 }

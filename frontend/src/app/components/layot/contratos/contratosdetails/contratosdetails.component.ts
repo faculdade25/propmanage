@@ -2,6 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDividerModule } from '@angular/material/divider'; 
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelect } from '@angular/material/select';
+import { MatOption } from '@angular/material/select';
+
+
+
 
 interface Tenant {
   id: number;
@@ -29,7 +38,7 @@ import { ContratosService } from '../../../../services/contratos.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  imports: [CommonModule, ReactiveFormsModule,FormsModule],
+  imports: [CommonModule, ReactiveFormsModule,FormsModule, MatFormFieldModule,  MatDividerModule, MatButtonModule, MatInputModule, MatSelect, MatOption],
   selector: 'app-contratosdetails',
   templateUrl: './contratosdetails.component.html',
   styleUrls: ['./contratosdetails.component.scss']

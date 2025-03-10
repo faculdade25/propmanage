@@ -1,241 +1,163 @@
-<div class="container">
-  <h2>Gerenciamento de Contratos</h2>
-  
-  <div class="tabs">
-    <button 
-      [class.active]="activeTab === 'existente'" 
-      (click)="activeTab = 'existente'">
-      Inquilino Existente
-    </button>
-    <button 
-      [class.active]="activeTab === 'novo'" 
-      (click)="activeTab = 'novo'">
-      Novo Inquilino
-    </button>
-  </div>
-  
-  <div class="loading-indicator" *ngIf="loading">
-    <span>Carregando...</span>
-  </div>
-  
-  <!-- Formulário de Inquilino Existente -->
-  <div *ngIf="activeTab === 'existente'">
-    <div class="form-section">
-      <h3>Selecionar Inquilino</h3>
-      
-      <div class="form-field">
-        <label for="tenant-select">Inquilino:</label>
-        <!-- Fixed: Removed 'as FormControl' that was causing the error -->
-        <select [formControl]="contractForm.controls.titularId">
-          <option [ngValue]="null">Selecione um inquilino</option>
-          <option *ngFor="let tenant of tenants" [ngValue]="tenant.id">
-            {{ tenant.nome }}
-          </option>
-        </select>
-        <div class="error-message" *ngIf="contractForm.controls.titularId.touched && contractForm.controls.titularId.errors?.['required']">
-          Por favor, selecione um inquilino
-        </div>
+<div class="p-6">
+    <!-- Header -->
+    <div class="modal-header mb-4">
+      <div class="flex flex-col gap-2">
+        <h2 class="text-xl font-bold">Perfil</h2>
+        <p class="text-gray-600 text-sm">
+          Nesta seção, você pode cadastrar um novo inquilino e definir suas informações básicas.
+          Para alterações em dados sensíveis, como documento de identificação para emissão de faturas, entre em contato com o suporte.
+        </p>
       </div>
     </div>
-  </div>
   
-  <!-- Formulário de Novo Inquilino -->
-  <div *ngIf="activeTab === 'novo'">
-    <div class="form-section">
-      <h3>Cadastrar Novo Inquilino</h3>
-      
-      <form [formGroup]="newTenantForm" (ngSubmit)="createTenant()">
-        <div class="form-row">
-          <div class="form-field">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" formControlName="nome">
-            <div class="error-message" *ngIf="newTenantForm.controls.nome.touched && newTenantForm.controls.nome.errors?.['required']">
-              Nome é obrigatório
-            </div>
-          </div>
-          
-          <div class="form-field">
-            <label for="sobrenome">Sobrenome:</label>
-            <input type="text" id="sobrenome" formControlName="sobrenome">
-            <div class="error-message" *ngIf="newTenantForm.controls.sobrenome.touched && newTenantForm.controls.sobrenome.errors?.['required']">
-              Sobrenome é obrigatório
-            </div>
-          </div>
-        </div>
-        
-        <div class="form-row">
-          <div class="form-field">
-            <label for="email">Email:</label>
-            <input type="email" id="email" formControlName="email">
-            <div class="error-message" *ngIf="newTenantForm.controls.email.touched && newTenantForm.controls.email.errors?.['required']">
-              Email é obrigatório
-            </div>
-            <div class="error-message" *ngIf="newTenantForm.controls.email.touched && newTenantForm.controls.email.errors?.['email']">
-              Email inválido
-            </div>
-          </div>
-          
-          <div class="form-field">
-            <label for="telefone">Telefone:</label>
-            <input type="tel" id="telefone" formControlName="telefone">
-            <div class="error-message" *ngIf="newTenantForm.controls.telefone.touched && newTenantForm.controls.telefone.errors?.['required']">
-              Telefone é obrigatório
-            </div>
-          </div>
-        </div>
-        
-        <div class="form-row">
-          <div class="form-field">
-            <label for="cpf">CPF:</label>
-            <input type="text" id="cpf" formControlName="cpf">
-            <div class="error-message" *ngIf="newTenantForm.controls.cpf.touched && newTenantForm.controls.cpf.errors?.['required']">
-              CPF é obrigatório
-            </div>
-          </div>
-          
-          <div class="form-field">
-            <label for="rg">RG:</label>
-            <input type="text" id="rg" formControlName="rg">
-            <div class="error-message" *ngIf="newTenantForm.controls.rg.touched && newTenantForm.controls.rg.errors?.['required']">
-              RG é obrigatório
-            </div>
-          </div>
-        </div>
-        
-        <div class="form-row">
-          <div class="form-field">
-            <label for="profissao">Profissão:</label>
-            <input type="text" id="profissao" formControlName="profissao">
-            <div class="error-message" *ngIf="newTenantForm.controls.profissao.touched && newTenantForm.controls.profissao.errors?.['required']">
-              Profissão é obrigatória
-            </div>
-          </div>
-          
-          <div class="form-field">
-            <label for="nascimento">Data de Nascimento:</label>
-            <input type="date" id="nascimento" formControlName="nascimento">
-            <div class="error-message" *ngIf="newTenantForm.controls.nascimento.touched && newTenantForm.controls.nascimento.errors?.['required']">
-              Data de nascimento é obrigatória
-            </div>
-          </div>
-        </div>
-        
-        <div class="button-container">
-          <button type="submit" [disabled]="newTenantForm.invalid || loading">
-            Cadastrar Inquilino
-          </button>
-        </div>
-      </form>
+    <!-- Body -->
+    <div class="modal-body space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Primeiro Nome -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Primeiro Nome</mat-label>
+          <input matInput type="text">
+        </mat-form-field>
+  
+        <!-- Último Nome -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Último Nome</mat-label>
+          <input matInput type="text">
+        </mat-form-field>
+      </div>
+  
+      <mat-divider></mat-divider>
+  
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Data de Nascimento -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Data de Nascimento</mat-label>
+          <input matInput type="date">
+        </mat-form-field>
+  
+        <!-- RG -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>RG</mat-label>
+          <input matInput type="text">
+        </mat-form-field>
+  
+        <!-- CPF -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>CPF</mat-label>
+          <input matInput type="text" mask="000.000.000-00">
+        </mat-form-field>
+      </div>
+  
+      <mat-divider></mat-divider>
+  
+      <div class="grid grid-cols-1">
+        <!-- Profissão -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Profissão</mat-label>
+          <input matInput type="text">
+        </mat-form-field>
+      </div>
+      <div class="grid grid-cols-1">
+        <!-- Profissão -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Remuneração</mat-label>
+          <input matInput type="text">
+        </mat-form-field>
+      </div>
+      <div class="grid grid-cols-1">
+        <mat-form-field appearance="outline">
+          <mat-label>Selecione um inquilo</mat-label>
+          <mat-select>
+            <mat-option value="" disabled selected>Selecione um Status</mat-option>
+            <mat-option value="option1">Opção 1</mat-option>
+            <mat-option value="option2">Opção 2</mat-option>
+            <mat-option value="option3">Opção 3</mat-option>
+            <mat-option value="option4">Opção 4</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
     </div>
-  </div>
-  
-  <!-- Formulário de Contrato -->
-  <div class="form-section" *ngIf="contractForm.controls.titularId.value || activeTab === 'existente'">
-    <h3>Dados do Contrato</h3>
+
+    <div class="modal-header mb-4">
+        <div class="flex flex-col gap-2">
+          <h2 class="text-xl font-bold">Aluguel</h2>
+          <p class="text-gray-600 text-sm">
+            Nesta seção, você pode visualizar e gerenciar as informações do aluguel, incluindo valores, vencimentos e status de pagamento.
+            Para qualquer ajuste contratual, entre em contato com a administração.
+          </p>
+        </div>
+      </div>
+
+      <div class="modal-body space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Primeiro Nome -->
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Condominio</mat-label>
+            <input matInput type="text">
+          </mat-form-field>
     
-    <form [formGroup]="contractForm" (ngSubmit)="submitContract()">
-      <div class="form-row">
-        <div class="form-field">
-          <label for="apnum">Número do Apartamento:</label>
-          <input type="number" id="apnum" formControlName="apnum" min="1">
-          <div class="error-message" *ngIf="contractForm.controls.apnum.touched && contractForm.controls.apnum.errors?.['required']">
-            Número do apartamento é obrigatório
-          </div>
-          <div class="error-message" *ngIf="contractForm.controls.apnum.touched && contractForm.controls.apnum.errors?.['min']">
-            Número do apartamento deve ser maior que 0
-          </div>
+          <!-- Último Nome -->
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>IPTU(mensal)</mat-label>
+            <input matInput type="text">
+          </mat-form-field>
         </div>
-        
-        <div class="form-field">
-          <label for="referente">Ano de Referência:</label>
-          <input type="number" id="referente" formControlName="referente">
-          <div class="error-message" *ngIf="contractForm.controls.referente.touched && contractForm.controls.referente.errors?.['required']">
-            Ano de referência é obrigatório
-          </div>
+    
+        <mat-divider></mat-divider>
+    
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Data de Nascimento -->
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Internet</mat-label>
+            <input matInput type="text">
+          </mat-form-field>
+    
+          <!-- RG -->
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Mensalidade</mat-label>
+            <input matInput type="text">
+          </mat-form-field>
+    
+        </div>
+    
+        <mat-divider></mat-divider>
+    
+        <div class="grid grid-cols-1">
+          <mat-form-field appearance="outline">
+            <mat-label>Selecione um inquilo</mat-label>
+            <mat-select>
+              <mat-option value="" disabled selected>Selecione um Status</mat-option>
+              <mat-option value="option1">Opção 1</mat-option>
+              <mat-option value="option2">Opção 2</mat-option>
+              <mat-option value="option3">Opção 3</mat-option>
+              <mat-option value="option4">Opção 4</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
       </div>
+
       
-      <div class="form-row">
-        <div class="form-field">
-          <label for="valorAluguel">Valor do Aluguel (R$):</label>
-          <input type="number" id="valorAluguel" formControlName="valorAluguel" step="0.01">
-          <div class="error-message" *ngIf="contractForm.controls.valorAluguel.touched && contractForm.controls.valorAluguel.errors?.['required']">
-            Valor do aluguel é obrigatório
-          </div>
-        </div>
-        
-        <div class="form-field">
-          <label for="valorCondominio">Valor do Condomínio (R$):</label>
-          <input type="number" id="valorCondominio" formControlName="valorCondominio" step="0.01">
-          <div class="error-message" *ngIf="contractForm.controls.valorCondominio.touched && contractForm.controls.valorCondominio.errors?.['required']">
-            Valor do condomínio é obrigatório
-          </div>
-        </div>
-      </div>
+  
+    <!-- Footer -->
+    <div class="modal-footer flex justify-end gap-2 mt-6">
+      <button 
+        mat-raised-button 
+        color="warn"
+        [disabled]="true"
+        class="!bg-[#FF2D55] !text-white"
+      >
+        Apagar
+      </button>
       
-      <div class="form-row">
-        <div class="form-field">
-          <label for="valorIptu">Valor do IPTU (R$):</label>
-          <input type="number" id="valorIptu" formControlName="valorIptu" step="0.01">
-          <div class="error-message" *ngIf="contractForm.controls.valorIptu.touched && contractForm.controls.valorIptu.errors?.['required']">
-            Valor do IPTU é obrigatório
-          </div>
-        </div>
-        
-        <div class="form-field">
-          <label for="valorInternet">Valor da Internet (R$):</label>
-          <input type="number" id="valorInternet" formControlName="valorInternet" step="0.01">
-          <div class="error-message" *ngIf="contractForm.controls.valorInternet.touched && contractForm.controls.valorInternet.errors?.['required']">
-            Valor da internet é obrigatório
-          </div>
-        </div>
-      </div>
-      
-      <div class="form-row">
-        <div class="form-field">
-          <label for="entrada">Data de Entrada:</label>
-          <input type="date" id="entrada" formControlName="entrada">
-          <div class="error-message" *ngIf="contractForm.controls.entrada.touched && contractForm.controls.entrada.errors?.['required']">
-            Data de entrada é obrigatória
-          </div>
-        </div>
-        
-        <div class="form-field">
-          <label for="dataAceite">Data de Aceite:</label>
-          <input type="date" id="dataAceite" formControlName="dataAceite">
-          <div class="error-message" *ngIf="contractForm.controls.dataAceite.touched && contractForm.controls.dataAceite.errors?.['required']">
-            Data de aceite é obrigatória
-          </div>
-        </div>
-      </div>
-      
-      <div class="form-row">
-        <div class="form-field">
-          <label for="processo">Número do Processo:</label>
-          <input type="text" id="processo" formControlName="processo">
-          <div class="error-message" *ngIf="contractForm.controls.processo.touched && contractForm.controls.processo.errors?.['required']">
-            Número do processo é obrigatório
-          </div>
-        </div>
-        
-        <div class="form-field">
-          <label for="status">Status:</label>
-          <select id="status" formControlName="status">
-            <option value="DEFERIDO">DEFERIDO</option>
-            <option value="INDEFERIDO">INDEFERIDO</option>
-            <option value="EM_ANALISE">EM ANÁLISE</option>
-          </select>
-          <div class="error-message" *ngIf="contractForm.controls.status.touched && contractForm.controls.status.errors?.['required']">
-            Status é obrigatório
-          </div>
-        </div>
-      </div>
-      
-      <div class="button-container">
-        <button type="submit" [disabled]="contractForm.invalid || loading">
-          Criar Contrato
-        </button>
-      </div>
-    </form>
+      <button 
+        mat-raised-button 
+        color="primary"
+        class="!bg-[#0F172A] !text-white"
+      >
+        Salvar
+      </button>
+    </div>
   </div>
-</div>
+  
+  
+  
