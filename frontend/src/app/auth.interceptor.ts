@@ -6,7 +6,7 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
   const cookieService = inject(CookieService);
   
   // Verificar se a requisição é de login - assumindo que a URL contém 'login'
-  if (req.url.includes('/api/v1/user/login')){
+  if (req.url.includes('/login')){
     // Se for login, deixa passar sem modificação
     return next(req);
   }
@@ -23,6 +23,7 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
     });
     
     // Processa a requisição modificada
+    console.log(clonedReq);
     return next(clonedReq);
   }
   

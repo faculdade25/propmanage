@@ -7,16 +7,20 @@
     </p>
   </div>
 </div>
-
-<div class="modal-body" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
-  <mat-form-field appearance="outline" style="width: 100%;">
-    <mat-label>Número do Apartamento</mat-label>
-    <input matInput type="text">
-  </mat-form-field>
+<div class="modal-body">
+  <div class="form-group">
+    <label for="apnum">Número do Apartamento</label>
+    <input [(ngModel)]="apartamento.apnum" type="text" class="form-control" id="apnum" placeholder="Digite o número do apartamento" required>
+  </div>  
 </div>
-
-<div class="modal-footer" style="display: flex; justify-content: flex-end;">
-  <button mat-button color="primary" (click)="closeModal()" style="background-color: #0F172A; color: white;">
+<div class="modal-footer" style="display: flex; justify-content: flex-end; gap: 8px;">
+  <button *ngIf="apartamento?.id" mat-button class="btn" color="primary" (click)="deleteApartamento()" style="background-color: #FF3B30; color: #FFF;">
+    Apagar
+  </button>
+  <button *ngIf="apartamento?.id" mat-button class="btn" color="primary" (click)="editApartamento()" style="background-color: #0F172A; color: white;">
+    Editar
+  </button>
+  <button *ngIf="!apartamento?.id" mat-button class="btn" color="primary" (click)="novoApartamento()" style="background-color: #0F172A; color: white;">
     Criar
   </button>
 </div>

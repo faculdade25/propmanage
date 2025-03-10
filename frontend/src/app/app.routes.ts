@@ -18,6 +18,7 @@ import { PagamentosComponent } from './components/layot/pagamentos/pagamentos.co
 import { UsuariosComponent } from './components/layot/usuarios/usuarios.component';
 import { NotificacoesComponent } from './components/layot/notificacoes/notificacoes.component';
 import { ConfiguracoesComponent } from './components/layot/configuracoes/configuracoes.component';
+import { ContratosdetailsComponent } from './components/layot/contratos/contratosdetails/contratosdetails.component';
 
 export const routes: Routes = [
     { path: "", redirectTo: "login", pathMatch: "full" },
@@ -38,6 +39,7 @@ export const routes: Routes = [
       {path: "dashboard", component: DashboardComponent},
       {path: "apartamentos", component: ApartamentosComponent},
       {path: "contratos", component: ContratosComponent},
+      {path: "contratosdetails", component: ContratosdetailsComponent},
       {path: "pagamentos", component: PagamentosComponent},
       {path: "usuarios", component: UsuariosComponent},
       {path: "notificacoes", component: NotificacoesComponent},

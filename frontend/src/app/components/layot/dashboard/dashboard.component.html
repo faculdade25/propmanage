@@ -18,7 +18,7 @@
 
         </div>
         <div class="cardContent">
-          <p class="mainValue">R$ 13501.00</p>
+          <p class="mainValue">R$ {{saldoAtual}}</p>
         </div>
       </div>
       <div class="card">
@@ -35,11 +35,11 @@
 
         </div>
         <div class="cardContent">
-          <p class="mainValue">R$ 13501.00</p>
+          <p class="mainValue">R$ {{saldoFuturo}}</p>
         </div>
       </div>
     </div>
-    <div class="details">
+    <div class="summary">
       <div class="card">
         <div class="cardHeader">
           <div class="paymentContent">
@@ -48,21 +48,62 @@
           </div>
         </div>
         <div class="cardContent">
-          <hlm-table>
-            <hlm-caption>A list of your recent invoices.</hlm-caption>
-            <hlm-trow>
-              <hlm-th>Invoice</hlm-th>
-              <hlm-th>Status</hlm-th>
-              <hlm-th>Method</hlm-th>
-              <hlm-th>Status</hlm-th>
-            </hlm-trow>
-            <hlm-trow>
-              <hlm-th>INV001</hlm-th>
-              <hlm-th>Paid</hlm-th>
-              <hlm-th>Credit Card</hlm-th>
-              <hlm-th>$250.00</hlm-th>
-            </hlm-trow>
-          </hlm-table>
+          <div class="container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>APARTAMENTO</th>
+                        <th>DATA</th>
+                        <th>VALOR</th>
+                        <th>STATUS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let pagamento of pagamentos">
+                    <td>{{ pagamento.idApartamento }}</td>
+                    <td>{{ pagamento.vencimento | date:'dd/MM/yyyy HH:mm' }}</td>
+                    <td>{{pagamento.valor}}</td>
+                    <td>
+                      <span class="status" [ngClass]="pagamento.status.toLowerCase()">
+                        {{ pagamento.status }}
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="cardHeader">
+          <div class="paymentContent">
+            <h2>Últimas notificações</h2>
+            <p>Acompanhe as comunicações </p>
+          </div>
+        </div>
+        <div class="cardContent">
+          <div class="container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>DATA</th>
+                        <th>MENSAGEM</th>
+                        <th>STATUS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let notification of lastNotifications">
+                    <td>{{ notification.data | date:'dd/MM/yyyy HH:mm' }}</td>
+                    <td>{{ notification.titulo }}</td>
+                    <td>
+                      <span class="status" [ngClass]="notification.status.toLowerCase()">
+                        {{ notification.status }}
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
         </div>
       </div>
     </div>

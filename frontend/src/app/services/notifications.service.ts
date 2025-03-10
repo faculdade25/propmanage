@@ -21,7 +21,9 @@ export class NotificationsService {
 
   getPredioId(): number {
     const token = this.getCookie();
+    console.log(token);
     const decoded = jwtDecode<CustomJwtPayload>(token);
+    console.log(decoded);
     return decoded.buildingId;
   }
 
