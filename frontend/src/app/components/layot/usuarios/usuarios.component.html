@@ -14,15 +14,13 @@
                     <th>NOME</th>
                     <th>EMAIL</th>
                     <th>TELEFONE</th>
-                    <th>AÇÕES</th>
                 </tr>
             </thead>
             <tbody>
-                <tr style="background-color: white;">
-                    <td>Ana Silvestre</td>
-                    <td>user&#64;gmail.com</td>
-                    <td>45999999999</td>
-                    <td style="color: #007AFF; cursor: pointer;" (click) ="openModal()" >Editar</td>
+                <tr *ngFor="let usuario of usuarios" style="background-color: white;">
+                    <td>{{usuario.nome}}</td>
+                    <td>{{usuario.email}}</td>
+                    <td>{{usuario.telefone}}</td>
                 </tr>
             </tbody>
         </table>

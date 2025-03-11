@@ -16,13 +16,13 @@
       <!-- Primeiro Nome -->
       <mat-form-field appearance="outline" class="w-full">
         <mat-label>Primeiro Nome</mat-label>
-        <input matInput type="text">
+        <input matInput type="text" [(ngModel)]="inquilino.nome">
       </mat-form-field>
 
       <!-- Último Nome -->
       <mat-form-field appearance="outline" class="w-full">
         <mat-label>Último Nome</mat-label>
-        <input matInput type="text">
+        <input matInput type="text" [(ngModel)]="inquilino.sobrenome">
       </mat-form-field>
     </div>
 
@@ -32,29 +32,43 @@
       <!-- Data de Nascimento -->
       <mat-form-field appearance="outline" class="w-full">
         <mat-label>Data de Nascimento</mat-label>
-        <input matInput type="date">
+        <input matInput type="date" [(ngModel)]="inquilino.nascimento">
       </mat-form-field>
 
       <!-- RG -->
       <mat-form-field appearance="outline" class="w-full">
         <mat-label>RG</mat-label>
-        <input matInput type="text">
+        <input matInput type="text" [(ngModel)]="inquilino.rg">
       </mat-form-field>
 
       <!-- CPF -->
       <mat-form-field appearance="outline" class="w-full">
         <mat-label>CPF</mat-label>
-        <input matInput type="text" mask="000.000.000-00">
+        <input matInput type="text" [(ngModel)]="inquilino.cpf">
       </mat-form-field>
     </div>
 
     <mat-divider></mat-divider>
 
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- Email -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" [(ngModel)]="inquilino.email">
+      </mat-form-field>
+
+      <!-- Telefone -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Telefone</mat-label>
+        <input matInput type="tel" [(ngModel)]="inquilino.telefone">
+      </mat-form-field>
+    </div>
+
     <div class="grid grid-cols-1">
       <!-- Profissão -->
       <mat-form-field appearance="outline" class="w-full">
         <mat-label>Profissão</mat-label>
-        <input matInput type="text">
+        <input matInput type="text" [(ngModel)]="inquilino.profissao">
       </mat-form-field>
     </div>
   </div>
@@ -63,21 +77,11 @@
   <div class="modal-footer flex justify-end gap-2 mt-6">
     <button 
       mat-raised-button 
-      color="warn"
-      [disabled]="true"
-      class="!bg-[#FF2D55] !text-white"
-    >
-      Apagar
-    </button>
-    
-    <button 
-      mat-raised-button 
       color="primary"
       class="!bg-[#0F172A] !text-white"
+      (click)="enviarInquilino()"
     >
       Salvar
     </button>
   </div>
 </div>
-
-

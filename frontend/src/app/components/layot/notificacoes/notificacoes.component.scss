@@ -364,3 +364,27 @@ th, td {
 
 
 
+
+
+.status {
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.pendente {
+    background: #f8e5a1;
+    color: #9c7b16;
+}
+
+.resolvido {
+    background: #bff0d3;
+    color: #1b7d46;
+}
+
+.previsto {
+    background: #e0e0e0;
+    color: #666;
+}

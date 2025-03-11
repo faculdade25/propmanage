@@ -10,24 +10,23 @@
         <table style="background-color: #F4F4F5; border-radius: 10px; width: 100%;" class="table">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>TITULAR</th>
-                    <th>UH</th>
-                    <th>REFENTE</th>
                     <th>VENCIMENTO</th>
+                    <th>VALOR</th>
+                    <th>TITULAR</th>
                     <th>STATUS</th>
                </tr>
             </thead>
             <tbody>
-                
-                <tr style="background-color: white;">
-                    <td>#111</td>
-                    <td>Ana Silvestre</td>
-                    <td>101</td>
-                    <td>2025</td>
-                    <td>23/02/2025</td>
-                    <td><span class="status deferido">DEFERIDO</span></td>
-                </tr>
+                <tr *ngFor="let pagamento of pagamentos">
+                    <td>{{ pagamento.vencimento | date:'dd/MM/yyyy' }}</td>
+                    <td>{{pagamento.valor}}</td>
+                    <td>{{pagamento.titular}}</td>
+                    <td>
+                      <span class="status" [ngClass]="pagamento.status.toLowerCase()">
+                        {{ pagamento.status }}
+                      </span>
+                    </td>
+                  </tr>
             </tbody>
         </table>
     </div>
