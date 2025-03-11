@@ -1,0 +1,39 @@
+<div class="container">
+
+    <div class="name-user">
+        <h1 class="name-title">Notificações</h1>
+
+    </div>
+
+
+
+    <div class="content">
+
+
+        <div class="join-tables">
+
+            <h1 class="title">Últimas atualizações</h1>
+
+
+            <div class="table-section">
+                <table class="payments-table">
+
+                    <thead>
+                        <tr>
+                            <th>Data e hora</th>
+                            <th>Processo</th>
+                            <th>Referente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let notification of lastNotifications">
+                            <td>{{notification.data}}</td>
+                            <td>{{notification.titulo}}</td>
+                            <td>{{notification.status}}</td>
+                        </tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

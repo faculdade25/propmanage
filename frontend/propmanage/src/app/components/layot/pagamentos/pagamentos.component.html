@@ -1,0 +1,36 @@
+<div style="padding-left: 32px; padding-right: 32px; padding: 32px; display: flex; flex-direction: column;">
+    <div class="greeting" style="display: flex; justify-content: space-between;">
+        <h1>Pagamentos</h1>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="paymentContent">
+            <h2 class="card-title">Gestão de Pagamentos</h2>
+            <p class="card-text">Acompanhe e gerencie todos os pagamentos do condomínio, incluindo aluguéis, taxas e outras despesas. Verifique o status de cada transação e mantenha as finanças sempre organizadas.</p>
+        </div>
+        <table style="background-color: #F4F4F5; border-radius: 10px; width: 100%;" class="table">
+            <thead>
+                <tr>
+                    <th>VENCIMENTO</th>
+                    <th>VALOR</th>
+                    <th>TITULAR</th>
+                    <th>STATUS</th>
+               </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pagamento of pagamentos">
+                    <td>{{ pagamento.vencimento | date:'dd/MM/yyyy' }}</td>
+                    <td>{{pagamento.valor}}</td>
+                    <td>{{pagamento.titular}}</td>
+                    <td>
+                      <span class="status" [ngClass]="pagamento.status.toLowerCase()">
+                        {{ pagamento.status }}
+                      </span>
+                    </td>
+                  </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+

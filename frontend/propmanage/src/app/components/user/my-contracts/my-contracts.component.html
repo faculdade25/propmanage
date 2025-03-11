@@ -1,0 +1,79 @@
+<div class="container">
+    <div class="name-user">
+        <h1 class="name-title">Contratos</h1>
+    </div>
+
+    <div class="content">
+        <!-- Contrato atual -->
+        <div class="section">
+            <h1 class="title">Seu contrato atual</h1>
+            <p class="desc">Sem alterações pendentes</p>
+
+            <div *ngIf="loading" class="loading">Carregando contrato atual...</div>
+
+            <div class="table-section-contract" *ngIf="!loading">
+                <table class="payments-table" *ngIf="contratoAtual; else noCurrentContract">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Processo</th>
+                            <th>Referente</th>
+                            <th>Data de aceite</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ contratoAtual.dataCriacao }}</td>
+                            <td>{{ processo }}</td>
+                            <td>{{ contratoAtual.referente }}</td>
+                            <td>{{ contratoAtual.dataAceite }}</td>
+                            <td>{{ contratoAtual.status }}</td>
+                            <td class="download">Download</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ng-template #noCurrentContract>
+                    <p>Nenhum contrato atual encontrado.</p>
+                </ng-template>
+            </div>
+        </div>
+
+        <!-- Todos contratos -->
+        <div class="join-tables">
+            <h1 class="title">Todos os contratos</h1>
+            <p class="desc">Confira seus contratos</p>
+
+            <div *ngIf="loading" class="loading">Carregando contratos...</div>
+
+            <div class="table-section" *ngIf="!loading">
+                <table class="payments-table" *ngIf="allContracts.length > 0; else noContracts">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Processo</th>
+                            <th>Referente</th>
+                            <th>Data de aceite</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let contrato of allContracts">
+                            <td>{{contrato.dataCriacao}}</td>
+                            <td>{{contrato.processo}}</td>
+                            <td>{{contrato.referente}}</td>
+                            <td>{{contrato.dataAceite}}</td>
+                            <td>{{contrato.status}}</td>
+                            <td class="download">Download</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ng-template #noContracts>
+                    <p>Nenhum contrato encontrado.</p>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+FROM mysql:8.0
+
+ENV MYSQL_DATABASE=to_do
+ENV MYSQL_USER=todouser
+ENV MYSQL_PASSWORD=to_do_lists_2025
+ENV MYSQL_ROOT_PASSWORD=root_password
+
+# Copiar arquivo de backup SQL 
+COPY backup.sql /docker-entrypoint-initdb.d/
+
+# Volume para persistência dos dados
+VOLUME /var/lib/mysql
+
+EXPOSE 3306

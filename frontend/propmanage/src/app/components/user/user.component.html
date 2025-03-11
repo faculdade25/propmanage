@@ -1,0 +1,19 @@
+<div class="user-container">
+  <!-- Header com botão de toggle -->
+  <header class="header">
+    <button class="toggle-btn" (click)="toggleSidebar()">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+  </header>
+
+  <!-- Sidebar -->
+  <app-sidebar-menu-lateral 
+    [isVisible]="isSidebarVisible" 
+    (toggleEvent)="toggleSidebar()">
+  </app-sidebar-menu-lateral>
+
+  <!-- Área de conteúdo -->
+  <div class="content-area">
+    <router-outlet></router-outlet>
+  </div>
+</div>

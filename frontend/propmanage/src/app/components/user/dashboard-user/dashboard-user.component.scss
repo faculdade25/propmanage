@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+.container {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+.name-user {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  width: 100%;
+  margin-top: 45px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+}
+
+.name-title {
+  font-size: 24px;
+  font-family: 'Inter';
+  font-weight: 700;
+  color: rgba(63, 63, 70, 1);
+}
+
+.container-section {
+  width: 100%;
+  display: flex;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-height: 80vh;
+
+  gap: 10px;
+  padding: 10px;
+  margin: auto;
+}
+
+.section {
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #000000;
+  margin: 5px;
+}
+
+.icon-pag {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 20px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-family: 'Inter';
+  font-weight: 600;
+  color: rgba(9, 9, 9, 1);
+}
+
+.desc {
+  font-size: 17px;
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-family: 'Inter';
+  font-weight: 400;
+  color: rgba(63, 63, 70, 0.8);
+}
+
+.amount {
+  font-size: 20px;
+  font-family: 'Inter';
+  font-weight: 500;
+  color: rgba(0, 0, 0, 1);
+}
+
+.join-tables {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #000000;
+  margin: 5px;
+}
+
+.payments-table {
+  margin-top: 15px;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+
+th {
+  font-size: 12px;
+  font-family: 'Inter';
+  font-weight: 600;
+  color: #71717A;
+}
+
+td {
+  font-size: 14px;
+  font-family: 'Inter';
+  font-weight: 400;
+  color: #11181C;
+  border: none;
+  background-color: #ffffff;
+  padding: 12px;
+  text-align: center;
+}
+
+td:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+td:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+.payments-table th,
+.payments-table td {
+  padding: 12px;
+  text-align: center;
+  border: none;
+  margin: 0;
+  box-shadow: none;
+}
+
+.payments-table thead {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.table-section {
+  width: 100%;
+  height: 50vh;
+  background-color: rgb(218, 215, 215);
+  padding: 10px;
+  border-radius: 8px;
+
+}
+
+/* Media Query for Mobile (e.g., screens smaller than 768px) */
+@media (max-width: 1000px) {
+  .container {
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .container-section {
+    flex-direction: column; /* Stack sections vertically */
+  }
+
+  .content {
+    display: block;
+    max-height: 100%;
+    gap: 10px;
+    padding: 10px;
+    margin: auto;
+  }
+
+  .section {
+    width: 100%; /* Full width on mobile */
+    
+  }
+
+  .join-tables {
+    width: 100%; /* Full width on mobile */
+  }
+
+  .table-section {
+    height: auto; /* Adjust height for mobile */
+    overflow-x: auto; /* Allow horizontal scrolling for tables if needed */
+  }
+
+  .name-user {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    width: 100%;
+    margin-top: 45px;
+    padding-bottom: 0px;
+    padding-left: 10px;
+  }
+  
+  .name-title {
+    font-size: 24px;
+    font-family: 'Inter';
+    font-weight: 700;
+    color: rgba(63, 63, 70, 1);
+  }
+  .title, .desc, .amount {
+    font-size: 14px; /* Adjust font sizes for mobile */
+  }
+}
