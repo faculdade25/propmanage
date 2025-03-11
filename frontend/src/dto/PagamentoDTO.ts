@@ -11,5 +11,6 @@ export enum StatusPagamento {
     PENDENTE = 'PENDENTE',
     PAGO = 'PAGO',
     A_VENCER = 'A VENCER',
-    FUTURO = 'INDISPONIVEL'
+    FUTURO = 'INDISPONIVEL',
+    ATRASADO = 'ATRASADO'
 }

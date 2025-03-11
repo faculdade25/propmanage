@@ -3,6 +3,14 @@
     font-family: 'Inter', sans-serif;
 }
 
+app-dashboard {
+  width: 100%;
+}
+
+app-apartamentos {
+  width: 100%;
+}
+
 
 :root {
     --font-sans: '';
@@ -52,3 +60,12 @@
     color-scheme: dark;
   }
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+.mat-mdc-dialog-surface {
+  height: auto !important;
+}

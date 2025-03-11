@@ -1,25 +1,37 @@
 import { Component } from '@angular/core';
-import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
-import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
+import { MatDialog } from '@angular/material/dialog'; // <– Alteração aqui
 import { UsuariosdetailsComponent } from './usuariosdetails/usuariosdetails.component';
+import { InquilinoDTO } from '../../../../dto/requests/InquilinoMinDTO';
+import { environment } from '../../../../../enviroments/enviroment';
+import { HttpClient } from '@angular/common/http';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-usuarios',
   standalone: true,
-  imports: [ MdbModalModule],
+  imports: [NgFor],
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.scss'
 })
 export class UsuariosComponent {
+  constructor(private dialog: MatDialog, private http: HttpClient) {
+    this.loadUsuarios();
+  }
 
-  modalRef: MdbModalRef<UsuariosdetailsComponent> | null = null;
-    
-        constructor(private modalService: MdbModalService) {}
-    
-        openModal() {
-          this.modalRef = this.modalService.open(UsuariosdetailsComponent, {
-            modalClass: 'modal-dialog-centered'
-          })
-        }
+  usuarios: InquilinoDTO[] = [];
+  apiUrl = environment.apiUrl;
 
+  openModal() {
+    this.dialog.open(UsuariosdetailsComponent, { 
+      panelClass: ['w-full', 'max-w-2xl', 'mx-auto'] 
+    });
+  }
+
+  loadUsuarios(){
+    this.http.get<InquilinoDTO[]>(this.apiUrl + "/predios/inquilinos").subscribe(
+      (data) => {
+        this.usuarios = data;
+      }
+    );
+  }
 }

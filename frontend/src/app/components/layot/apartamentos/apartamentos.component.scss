@@ -1,20 +1,20 @@
-.apartamentos{
-    width: 85vw;
-    height: 100vh;
-    position: absolute;
-    right: 0;
-    top: 0;
+.apartamentos {
+
+    padding-left: 64px;
+    padding-right: 64px;
+    padding-top: 32px;
+    padding-bottom: 32px;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
 }
 
-.container{
-    width: 70vw;
-    height: 90vh;
-}
-
-.apartamentos h1{
+.apartamentos h1 {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
@@ -24,7 +24,7 @@
 
 }
 
-.ap{
+.ap {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -36,13 +36,13 @@
     max-width: 120px;
     height: 150px;
     max-height: 150px;
-    background: #FF3B30;
+    background: #555555;
     border-radius: 8px;
     border: 1px solid #3F3F46CC;
     margin-top: 3px;
 }
 
-.number-ap{
+.number-ap {
     width: 72px;
     height: 36px;
     font-family: 'Inter';
@@ -51,11 +51,43 @@
     font-size: 36px;
     line-height: 36px;
     text-align: center;
-    color: #A3261E;
+    color: white;
     flex: none;
     order: 0;
     align-self: stretch;
     flex-grow: 0;
 }
 
+.ocupado{
+    background-color: #FF3B30;
+    color: white;
+}
 
+.vago {
+    background-color: #34C759;
+    color: white;
+}
+
+.header {
+    gap: 16px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.tittleAndButton {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+}
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 32px;
+}

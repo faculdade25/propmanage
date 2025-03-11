@@ -1,25 +1,37 @@
 import { Component } from '@angular/core';
-import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
-import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
+import { MatDialog } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ContratosdetailsComponent } from './contratosdetails/contratosdetails.component';
+import { CommonModule } from '@angular/common';
+import { Route, Router } from '@angular/router';
+import { ContratoDTOFull } from '../../../../dto/ContratoDTOFull';
+import { ContratosService } from '../../../services/contratos.service';
+import { ContractsService } from '../../../services/contracts.service';
 
 @Component({
   selector: 'app-contratos',
   standalone: true,
-  imports: [ MdbModalModule,],
+  imports: [MatDialogModule, CommonModule],
   templateUrl: './contratos.component.html',
-  styleUrl: './contratos.component.scss'
+  styleUrls: ['./contratos.component.scss']
 })
 export class ContratosComponent {
 
-  modalRef: MdbModalRef<ContratosdetailsComponent> | null = null;
-  
-      constructor(private modalService: MdbModalService) {}
-  
-      openModal() {
-        this.modalRef = this.modalService.open(ContratosdetailsComponent, {
-          modalClass: 'modal-dialog-centered'
-        })
-      }
+  contratos: ContratoDTOFull[] = [];
 
+  constructor(private router: Router, private contratoService: ContractsService) { 
+    this.loadContratos();
+  }
+
+  openModal() {
+    this.router.navigate(['/admin/contratosdetails']);
+  }
+
+  loadContratos(){
+    this.contratoService.allContratosAdmin().subscribe(
+      (data) => {
+        this.contratos = data;
+      }
+    );
+  }
 }

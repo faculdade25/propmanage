@@ -1,7 +1,7 @@
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
-
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { jwtInterceptor } from './auth.interceptor';
 
@@ -9,15 +9,7 @@ import { jwtInterceptor } from './auth.interceptor';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideHttpClient(
-      withInterceptors([jwtInterceptor])
-    )
+    provideHttpClient(withInterceptors([jwtInterceptor])),
+    provideAnimations() 
   ]
 };
-
-import { provideAnimations } from '@angular/platform-browser/animations';
-
-export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideAnimations()]
-};
-

@@ -1,107 +1,111 @@
 <div class="dashboard">
-    <div class="container">
-
-      <h1>Dashboard</h1>
-      <div style="display: flex">
-      <div class="card border border-dark me-3">
-        <div class="card-body d-flex align-items-center">
-          <div style="margin-right: 10px;">
-            <h5 class="card-title">Saldo atual</h5>
-            <p class="card-text">Estimativa do saldo ao final do mês com base nas receitas e despesas.</p>
-            <h5 class="card-title">R$ 13.345,50</h5>
+  <div class="mainContentWrapper">
+    <div class="greeting">
+      <h1>Olá, {{userName}}</h1>
+    </div>
+    <div class="summary">
+      <div class="card">
+        <div class="cardHeader">
+          <div class="paymentContent">
+            <h2>Saldo atual</h2>
+            <p>Estimativa do saldo atual com base nas receitas e despesas.</p>
           </div>
-          <svg  style="margin-bottom: 60px;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M14 13.0001C14.8333 13.0001 15.5417 12.7085 16.125 12.1251C16.7083 11.5418 17 10.8335 17 10.0001C17 9.16679 16.7083 8.45846 16.125 7.87512C15.5417 7.29179 14.8333 7.00012 14 7.00012C13.1667 7.00012 12.4583 7.29179 11.875 7.87512C11.2917 8.45846 11 9.16679 11 10.0001C11 10.8335 11.2917 11.5418 11.875 12.1251C12.4583 12.7085 13.1667 13.0001 14 13.0001ZM7 16.0001C6.45 16.0001 5.97933 15.8041 5.588 15.4121C5.196 15.0208 5 14.5501 5 14.0001V6.00012C5 5.45012 5.196 4.97946 5.588 4.58812C5.97933 4.19612 6.45 4.00012 7 4.00012H21C21.55 4.00012 22.021 4.19612 22.413 4.58812C22.8043 4.97946 23 5.45012 23 6.00012V14.0001C23 14.5501 22.8043 15.0208 22.413 15.4121C22.021 15.8041 21.55 16.0001 21 16.0001H7ZM3 20.0001C2.45 20.0001 1.97933 19.8045 1.588 19.4131C1.196 19.0211 1 18.5501 1 18.0001V8.00012C1 7.71679 1.096 7.47912 1.288 7.28712C1.47933 7.09579 1.71667 7.00012 2 7.00012C2.28333 7.00012 2.521 7.09579 2.713 7.28712C2.90433 7.47912 3 7.71679 3 8.00012V18.0001H19C19.2833 18.0001 19.5207 18.0961 19.712 18.2881C19.904 18.4795 20 18.7168 20 19.0001C20 19.2835 19.904 19.5208 19.712 19.7121C19.5207 19.9041 19.2833 20.0001 19 20.0001H3ZM7 8.00012C7.55 8.00012 8.02067 7.80412 8.412 7.41212C8.804 7.02079 9 6.55012 9 6.00012H7V8.00012ZM21 8.00012V6.00012H19C19 6.55012 19.1957 7.02079 19.587 7.41212C19.979 7.80412 20.45 8.00012 21 8.00012ZM7 14.0001H9C9 13.4501 8.804 12.9791 8.412 12.5871C8.02067 12.1958 7.55 12.0001 7 12.0001V14.0001ZM19 14.0001H21V12.0001C20.45 12.0001 19.979 12.1958 19.587 12.5871C19.1957 12.9791 19 13.4501 19 14.0001Z" fill="#3F3F46"/>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M14 13.0001C14.8333 13.0001 15.5417 12.7085 16.125 12.1251C16.7083 11.5418 17 10.8335 17 10.0001C17 9.16679 16.7083 8.45846 16.125 7.87512C15.5417 7.29179 14.8333 7.00012 14 7.00012C13.1667 7.00012 12.4583 7.29179 11.875 7.87512C11.2917 8.45846 11 9.16679 11 10.0001C11 10.8335 11.2917 11.5418 11.875 12.1251C12.4583 12.7085 13.1667 13.0001 14 13.0001ZM7 16.0001C6.45 16.0001 5.97933 15.8041 5.588 15.4121C5.196 15.0208 5 14.5501 5 14.0001V6.00012C5 5.45012 5.196 4.97946 5.588 4.58812C5.97933 4.19612 6.45 4.00012 7 4.00012H21C21.55 4.00012 22.021 4.19612 22.413 4.58812C22.8043 4.97946 23 5.45012 23 6.00012V14.0001C23 14.5501 22.8043 15.0208 22.413 15.4121C22.021 15.8041 21.55 16.0001 21 16.0001H7ZM3 20.0001C2.45 20.0001 1.97933 19.8045 1.588 19.4131C1.196 19.0211 1 18.5501 1 18.0001V8.00012C1 7.71679 1.096 7.47912 1.288 7.28712C1.47933 7.09579 1.71667 7.00012 2 7.00012C2.28333 7.00012 2.521 7.09579 2.713 7.28712C2.90433 7.47912 3 7.71679 3 8.00012V18.0001H19C19.2833 18.0001 19.5207 18.0961 19.712 18.2881C19.904 18.4795 20 18.7168 20 19.0001C20 19.2835 19.904 19.5208 19.712 19.7121C19.5207 19.9041 19.2833 20.0001 19 20.0001H3ZM7 8.00012C7.55 8.00012 8.02067 7.80412 8.412 7.41212C8.804 7.02079 9 6.55012 9 6.00012H7V8.00012ZM21 8.00012V6.00012H19C19 6.55012 19.1957 7.02079 19.587 7.41212C19.979 7.80412 20.45 8.00012 21 8.00012ZM7 14.0001H9C9 13.4501 8.804 12.9791 8.412 12.5871C8.02067 12.1958 7.55 12.0001 7 12.0001V14.0001ZM19 14.0001H21V12.0001C20.45 12.0001 19.979 12.1958 19.587 12.5871C19.1957 12.9791 19 13.4501 19 14.0001Z"
+              fill="#3F3F46" />
           </svg>
+
+        </div>
+        <div class="cardContent">
+          <p class="mainValue">R$ {{saldoAtual}}</p>
         </div>
       </div>
-
-      <div class="card border border-dark">
-        <div class="card-body d-flex align-items-center">
-          <div style="margin-right: 10px;">
-            <h5 class="card-title">Saldo projetado</h5>
-            <p class="card-text">Estimativa do saldo ao final do mês com base nas receitas e despesas.</p>
-            <h5 class="card-title">R$ 13.345,50</h5>
+      <div class="card">
+        <div class="cardHeader">
+          <div class="paymentContent">
+            <h2>Saldo projetado</h2>
+            <p>Estimativa do saldo ao final do mês com base nas receitas e despesas.</p>
           </div>
-          <svg style="margin-bottom: 60px;" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M14 13.0001C14.8333 13.0001 15.5417 12.7085 16.125 12.1251C16.7083 11.5418 17 10.8335 17 10.0001C17 9.16679 16.7083 8.45846 16.125 7.87512C15.5417 7.29179 14.8333 7.00012 14 7.00012C13.1667 7.00012 12.4583 7.29179 11.875 7.87512C11.2917 8.45846 11 9.16679 11 10.0001C11 10.8335 11.2917 11.5418 11.875 12.1251C12.4583 12.7085 13.1667 13.0001 14 13.0001ZM7 16.0001C6.45 16.0001 5.97933 15.8041 5.588 15.4121C5.196 15.0208 5 14.5501 5 14.0001V6.00012C5 5.45012 5.196 4.97946 5.588 4.58812C5.97933 4.19612 6.45 4.00012 7 4.00012H21C21.55 4.00012 22.021 4.19612 22.413 4.58812C22.8043 4.97946 23 5.45012 23 6.00012V14.0001C23 14.5501 22.8043 15.0208 22.413 15.4121C22.021 15.8041 21.55 16.0001 21 16.0001H7ZM3 20.0001C2.45 20.0001 1.97933 19.8045 1.588 19.4131C1.196 19.0211 1 18.5501 1 18.0001V8.00012C1 7.71679 1.096 7.47912 1.288 7.28712C1.47933 7.09579 1.71667 7.00012 2 7.00012C2.28333 7.00012 2.521 7.09579 2.713 7.28712C2.90433 7.47912 3 7.71679 3 8.00012V18.0001H19C19.2833 18.0001 19.5207 18.0961 19.712 18.2881C19.904 18.4795 20 18.7168 20 19.0001C20 19.2835 19.904 19.5208 19.712 19.7121C19.5207 19.9041 19.2833 20.0001 19 20.0001H3ZM7 8.00012C7.55 8.00012 8.02067 7.80412 8.412 7.41212C8.804 7.02079 9 6.55012 9 6.00012H7V8.00012ZM21 8.00012V6.00012H19C19 6.55012 19.1957 7.02079 19.587 7.41212C19.979 7.80412 20.45 8.00012 21 8.00012ZM7 14.0001H9C9 13.4501 8.804 12.9791 8.412 12.5871C8.02067 12.1958 7.55 12.0001 7 12.0001V14.0001ZM19 14.0001H21V12.0001C20.45 12.0001 19.979 12.1958 19.587 12.5871C19.1957 12.9791 19 13.4501 19 14.0001Z" fill="#3F3F46"/>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M14 13.0001C14.8333 13.0001 15.5417 12.7085 16.125 12.1251C16.7083 11.5418 17 10.8335 17 10.0001C17 9.16679 16.7083 8.45846 16.125 7.87512C15.5417 7.29179 14.8333 7.00012 14 7.00012C13.1667 7.00012 12.4583 7.29179 11.875 7.87512C11.2917 8.45846 11 9.16679 11 10.0001C11 10.8335 11.2917 11.5418 11.875 12.1251C12.4583 12.7085 13.1667 13.0001 14 13.0001ZM7 16.0001C6.45 16.0001 5.97933 15.8041 5.588 15.4121C5.196 15.0208 5 14.5501 5 14.0001V6.00012C5 5.45012 5.196 4.97946 5.588 4.58812C5.97933 4.19612 6.45 4.00012 7 4.00012H21C21.55 4.00012 22.021 4.19612 22.413 4.58812C22.8043 4.97946 23 5.45012 23 6.00012V14.0001C23 14.5501 22.8043 15.0208 22.413 15.4121C22.021 15.8041 21.55 16.0001 21 16.0001H7ZM3 20.0001C2.45 20.0001 1.97933 19.8045 1.588 19.4131C1.196 19.0211 1 18.5501 1 18.0001V8.00012C1 7.71679 1.096 7.47912 1.288 7.28712C1.47933 7.09579 1.71667 7.00012 2 7.00012C2.28333 7.00012 2.521 7.09579 2.713 7.28712C2.90433 7.47912 3 7.71679 3 8.00012V18.0001H19C19.2833 18.0001 19.5207 18.0961 19.712 18.2881C19.904 18.4795 20 18.7168 20 19.0001C20 19.2835 19.904 19.5208 19.712 19.7121C19.5207 19.9041 19.2833 20.0001 19 20.0001H3ZM7 8.00012C7.55 8.00012 8.02067 7.80412 8.412 7.41212C8.804 7.02079 9 6.55012 9 6.00012H7V8.00012ZM21 8.00012V6.00012H19C19 6.55012 19.1957 7.02079 19.587 7.41212C19.979 7.80412 20.45 8.00012 21 8.00012ZM7 14.0001H9C9 13.4501 8.804 12.9791 8.412 12.5871C8.02067 12.1958 7.55 12.0001 7 12.0001V14.0001ZM19 14.0001H21V12.0001C20.45 12.0001 19.979 12.1958 19.587 12.5871C19.1957 12.9791 19 13.4501 19 14.0001Z"
+              fill="#3F3F46" />
           </svg>
+
+        </div>
+        <div class="cardContent">
+          <p class="mainValue">R$ {{saldoFuturo}}</p>
         </div>
       </div>
     </div>
-
-    <div style="display: flex; margin-top: 20px;">
-      <div class="card border border-dark me-3">
-        <div class="card-body d-flex align-items-center">
-          <div style="margin-right: 10px;">
-            <h5 class="card-title">Inadimplência e Pagamentos Pendentes</h5>
-            <p class="card-text">Confira seus pagamentos</p>
-            <table style="background-color: #F4F4F5; border-radius: 10px;" class="table">
-              <thead>
-                  <tr>
-                      <th>UHS</th>
-                      <th>MÊS</th>
-                      <th>VALOR</th>
-                      <th>STATUS</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr style="background-color: white; border-radius: 500px;">
-                      <td>AP103</td>
-                      <td> jan/2025</td>
-                      <td>R$ 1254,00</td>
-                      <td><button type="button" class="btn btn-danger btn-rounded" mdbRipple>pendente</button>
-                      </td>
-                  </tr>
-                  <tr style="background-color: white; border-radius: 500px;">
-                    <td>AP103</td>
-                    <td> jan/2025</td>
-                    <td>R$ 1254,00</td>
-                    <td><button type="button" class="btn btn-danger btn-rounded" mdbRipple>pendente</button>
-                    </td>
-                </tr>
-                  
-              </tbody>
-          </table>
-          
+    <div class="summary">
+      <div class="card">
+        <div class="cardHeader">
+          <div class="paymentContent">
+            <h2>Inadimplência e Pagamentos Pendentes</h2>
+            <p>Confira seus pagamentos</p>
           </div>
         </div>
-      </div>
-
-      <div style="width: 33vw;" class="card border border-dark">
-        <div class="card-body d-flex align-items-center">
-          <div style="margin-right: 10px;">
-            <h5 class="card-title">Últimas notificações</h5>
-            <p class="card-text">Última atualização: 15 fev</p>
-            <table style="background-color: #F4F4F5; border-radius: 10px; width: 110%" class="table">
-              <thead>
-                  <tr>
-                      <th>MÊS</th>
-                      <th>MENSAGEM</th>
-                      <th>STATUS</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr style="background-color: white; border-radius: 500px;">
-                      <td> jan/2025</td>
-                      <td>Mensagem Teste</td>
-                      <td><button type="button" class="btn btn-danger btn-rounded" mdbRipple>pendente</button>
-                      </td>
-                  </tr>
-                  <tr style="background-color: white; border-radius: 500px;">
-                    <td> jan/2025</td>
-                    <td>Mensagem Teste</td>
-                    <td><button type="button" class="btn btn-danger btn-rounded" mdbRipple>pendente</button>
+        <div class="cardContent">
+          <div class="container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>APARTAMENTO</th>
+                        <th>DATA</th>
+                        <th>VALOR</th>
+                        <th>STATUS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let pagamento of pagamentos">
+                    <td>{{ pagamento.idApartamento }}</td>
+                    <td>{{ pagamento.vencimento | date:'dd/MM/yyyy HH:mm' }}</td>
+                    <td>{{pagamento.valor}}</td>
+                    <td>
+                      <span class="status" [ngClass]="pagamento.status.toLowerCase()">
+                        {{ pagamento.status }}
+                      </span>
                     </td>
-                </tr>
-                  
-              </tbody>
-          </table>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="cardHeader">
+          <div class="paymentContent">
+            <h2>Últimas notificações</h2>
+            <p>Acompanhe as comunicações </p>
           </div>
-
+        </div>
+        <div class="cardContent">
+          <div class="container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>DATA</th>
+                        <th>MENSAGEM</th>
+                        <th>STATUS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let notification of lastNotifications">
+                    <td>{{ notification.data | date:'dd/MM/yyyy HH:mm' }}</td>
+                    <td>{{ notification.titulo }}</td>
+                    <td>
+                      <span class="status" [ngClass]="notification.status.toLowerCase()">
+                        {{ notification.status }}
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
         </div>
       </div>
     </div>
-      
-    </div>
+  </div>
 </div>

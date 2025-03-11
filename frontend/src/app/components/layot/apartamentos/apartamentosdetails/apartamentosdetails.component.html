@@ -1,21 +1,26 @@
 <div class="modal-header">
-    <div style="display: flex; flex-direction: column;">
-    <h5 class="modal-title" id="exampleModalLabel"> Adicionar Novo Apartamento</h5>
-    <p class="card-text">Preencha as informações abaixo para cadastrar um novo apartamento no sistema. Certifique-se de inserir os dados corretamente para manter a organização da gestão do condomínio. </p>
-    </div>
-
-    
+  <div style="display: flex; flex-direction: column;">
+    <h2 class="modal-title">Adicionar Novo Apartamento</h2>
+    <p class="card-text">
+      Preencha as informações abaixo para cadastrar um novo apartamento no sistema. 
+      Certifique-se de inserir os dados corretamente para manter a organização da gestão do condomínio.
+    </p>
   </div>
-  <div style="display: flex; justify-content: space-evenly; align-items: center;" class="modal-body">
-    <mdb-form-control>
-        <input mdbInput type="text" id="form1" class="form-control" />
-        <label mdbLabel class="form-label" for="form1">Número do Apartamento</label>
-      </mdb-form-control>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn" style="background-color: #0F172A; color: white;"> Criar </button>
-  </div>
-
-
-
-
+</div>
+<div class="modal-body">
+  <div class="form-group">
+    <label for="apnum">Número do Apartamento</label>
+    <input [(ngModel)]="apartamento.apnum" type="text" class="form-control" id="apnum" placeholder="Digite o número do apartamento" required>
+  </div>  
+</div>
+<div class="modal-footer" style="display: flex; justify-content: flex-end; gap: 8px;">
+  <button *ngIf="apartamento?.id" mat-button class="btn" color="primary" (click)="deleteApartamento()" style="background-color: #FF3B30; color: #FFF;">
+    Apagar
+  </button>
+  <button *ngIf="apartamento?.id" mat-button class="btn" color="primary" (click)="editApartamento()" style="background-color: #0F172A; color: white;">
+    Editar
+  </button>
+  <button *ngIf="!apartamento?.id" mat-button class="btn" color="primary" (click)="novoApartamento()" style="background-color: #0F172A; color: white;">
+    Criar
+  </button>
+</div>

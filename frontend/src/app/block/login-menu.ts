@@ -22,7 +22,7 @@ import { jwtDecode } from 'jwt-decode';
 
 
 interface CustomJwtPayload {
-    role: string;
+    Role: string;
     exp: number;
 }
 
@@ -79,8 +79,9 @@ export class LoginMenuComponent {
 
     redirecter(token: string) {
         const decoded = jwtDecode<CustomJwtPayload>(token);
-        if (decoded.role === 'admin') {
-            this.router.navigate(['/admin']);
+        console.log(decoded);
+        if (decoded.Role === 'ADMIN') {
+            this.router.navigate(['/admin/dashboard']);
         } else {
             this.router.navigate(['/user']);
         }

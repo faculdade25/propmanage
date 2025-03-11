@@ -27,5 +27,19 @@ export class PaymentsService {
     return this.http.get<PagamentoDTO[]>(this.apiUrl + "/todos");
   }
 
+  //admin
+  totalSaldo(): Observable <number>{
+    return this.http.get<number>(this.apiUrl + "/total-pagos");
+  }
+
+  totalSaldoPendente(): Observable <number>{
+    return this.http.get<number>(this.apiUrl + "/total-pendentes");
+  }
+
+  allPagamentosPendente(): Observable <PagamentoDTO[]>{ 
+    return this.http.get<PagamentoDTO[]>(this.apiUrl + "/pendentes");
+  }
+
+
 
 }
