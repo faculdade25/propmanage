@@ -1,0 +1,22 @@
+# Build stage
+FROM maven:3.9-eclipse-temurin-17 AS build
+
+WORKDIR /app
+
+# Copy backend code into the container
+COPY ./propmanage/ ./
+RUN mvn package -DskipTests
+
+# Final image
+FROM eclipse-temurin:17-jre-jammy
+
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
+
+EXPOSE 8080
+
+# Configure application name
+ENV SPRING_APPLICATION_NAME=mensal
+
+CMD ["java", "-jar", "app.jar"]
+

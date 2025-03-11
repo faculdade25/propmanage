@@ -1,0 +1,67 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+    environment:
+      # As variáveis de ambiente do Spring Boot
+      - SPRING_APPLICATION_NAME=mensal
+      - SPRING_DATASOURCE_URL=jdbc:mysql://database:3306/to_do?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=todouser
+      - SPRING_DATASOURCE_PASSWORD=to_do_lists_2025
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
+      - SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.MySQL8Dialect
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_SHOW_SQL=true
+      - SPRING_MAIN_ALLOW_CIRCULAR_REFERENCES=true
+      - SPRING_MAIN_ALLOW_BEAN_DEFINITION_OVERRIDING=true
+      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY=DEBUG
+      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB=DEBUG
+      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB_CORS=DEBUG
+      - SPRING_SQL_INIT_MODE=never
+      - JWT_SECRET=6d9f0ca112e74f8c0f2cf8a126bf3c70b24fc88a39efb992c68fbcd4097d71157ecbc5dfce2c04c3f2ac606d131046e1cf56bd9b86528ba41dbe4ea9a95a956f84f13b5e1d067e0aa80f5e74b0c6a9c9fb92e80ee54a47ebd18f184a6a14a8d3ef50473a36bde150f737d6285799ff88b5dd5903ee72f17231c4fffa223c4911b956b0e813f73eb09c8cb8004a3356aa8c4bed424c1cee46b40ff1bd1f11406e9955dc72757cc8829f562161f7d51c36fd835034be887bb48795f6fb6712468f7ee97532f4749cb17a1eeaad9fd5d756f087ce8eb946c2f3d1cd65cc754499e6645926242b3ada60c2be4f9078ebb8c1691f1ee1a54be3e88525f2943c961398
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  database:
+    build:
+      context: ./db
+      dockerfile: Dockerfile.db
+    container_name: my-mysql-container2
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=to_do
+      - MYSQL_USER=todouser
+      - MYSQL_PASSWORD=to_do_lists_2025
+      - MYSQL_ROOT_PASSWORD=root_password
+    networks:
+      - app-network
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db-data:
+    driver: local
