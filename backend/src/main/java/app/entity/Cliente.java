@@ -9,7 +9,9 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,6 +22,8 @@ import java.util.List;
 @Table(name = "cliente")  // nome da tabela no banco de dados
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Cliente implements UserDetails {
 
 	@Id

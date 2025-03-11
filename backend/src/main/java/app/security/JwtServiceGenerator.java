@@ -2,6 +2,7 @@ package app.security;
 
 import app.entity.Cliente;
 import app.entity.User;
+import app.service.PredioService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -19,6 +20,11 @@ import java.util.function.Function;
 @Service
 public class JwtServiceGenerator {
 
+    private final PredioService predioService;
+    public JwtServiceGenerator(PredioService predioService) {
+        this.predioService = predioService;
+    }
+
     @Value("${jwt.secret}")
     private String secretKey;
 
@@ -30,7 +36,8 @@ public class JwtServiceGenerator {
         extraClaims.put("name", userDetails.getNome());
         extraClaims.put("id", userDetails.getId().toString());
         extraClaims.put("Role", userDetails.getRole());
-        extraClaims.put("buildingId", userDetails.getContratos().get(1).getApartamento().getPredio().getId());
+        Long predioId = predioService.getPredioIdByInquilino(userDetails.getId());
+        extraClaims.put("buildingId", predioId);
 
 
         return Jwts

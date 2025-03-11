@@ -3,7 +3,9 @@ package app.controller;
 import app.entity.Apartamento;
 import app.entity.Predio;
 import app.entity.dto.ApartamentoDTO;
+import app.entity.dto.InquilinoDTO;
 import app.service.PredioService;
+import app.service.UserService;
 import jakarta.annotation.security.RolesAllowed;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,6 +22,7 @@ import java.util.List;
 public class PredioController {
 
     private final PredioService predioService;
+    private final UserService userService;
 
     @GetMapping
     @RolesAllowed("ADMIN")
@@ -55,10 +58,27 @@ public class PredioController {
     }
 
 
-    @PostMapping("/new/apartamento/{buldingId}")
+    @PostMapping("/new/apartamento")
     @RolesAllowed("ADMIN")
-    public ResponseEntity<Apartamento> newApartamento(@PathVariable Long buldingId, @RequestBody Apartamento apartamento) {
-        Apartamento newApartamento = predioService.newApartamento(apartamento, buldingId);
+    public ResponseEntity<ApartamentoDTO> newApartamento(@RequestBody Apartamento apartamento, @AuthenticationPrincipal UserDetails userDetails) {
+        String email = userDetails.getUsername();
+        ApartamentoDTO newApartamento = predioService.newApartamento(apartamento, email);
         return ResponseEntity.status(HttpStatus.CREATED).body(newApartamento);
     }
+
+    @PutMapping("/edit/apartamento/{id}/{apnum}")
+    @RolesAllowed("ADMIN")
+    public ResponseEntity<ApartamentoDTO> editApartamento(@PathVariable Long id, @PathVariable int apnum){
+        ApartamentoDTO newApartamento = predioService.fasteditApartamento(id, apnum);
+        return ResponseEntity.status(HttpStatus.OK).body(newApartamento);
+    }
+
+    @GetMapping("/inquilinos")
+    public ResponseEntity<List<InquilinoDTO>> listarInquilinos(@AuthenticationPrincipal UserDetails userDetails) {
+        String email = userDetails.getUsername();
+        System.out.println(email);
+        List<InquilinoDTO> inquilinos = userService.listarInquilinos(email);
+        return ResponseEntity.ok(inquilinos);
+    }
+
 }

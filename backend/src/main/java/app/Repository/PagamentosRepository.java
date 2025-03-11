@@ -26,7 +26,7 @@ public interface PagamentosRepository extends JpaRepository<Pagamentos, Long> {
     @Query("SELECT COALESCE(SUM(p.valor), 0) FROM Pagamentos p WHERE p.contrato.apartamento.predio.email = :email   AND p.status = 'PAGO' AND p.vencimento BETWEEN :inicioMes AND :fimMes")
     BigDecimal getTotalPagamentosPagosNoMes(@Param("email") String email, @Param("inicioMes") LocalDate inicioMes, @Param("fimMes") LocalDate fimMes);
 
-    @Query("SELECT COALESCE(SUM(p.valor), 0) FROM Pagamentos p WHERE p.contrato.apartamento.predio.email = :adminId AND p.status IN ('PENDENTE', 'VENCIDO') AND p.vencimento BETWEEN :inicioMes AND :fimMes")
+    @Query("SELECT COALESCE(SUM(p.valor), 0) FROM Pagamentos p WHERE p.contrato.apartamento.predio.email = :adminId AND p.status IN ('PENDENTE', 'ATRASADO') AND p.vencimento BETWEEN :inicioMes AND :fimMes")
     BigDecimal getTotalPagamentosPendentesNoMes(@Param("adminId") String adminId, @Param("inicioMes") LocalDate inicioMes, @Param("fimMes") LocalDate fimMes);
 
     @Query("SELECT new app.entity.dto.PagamentoResumoDTO(p.contrato.apartamento.id, p.vencimento, p.valor, p.status) FROM Pagamentos p WHERE p.contrato.apartamento.predio.email = :adminId AND p.status IN ('PENDENTE', 'VENCIDO')")

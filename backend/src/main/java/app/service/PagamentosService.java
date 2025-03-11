@@ -104,26 +104,39 @@ public class PagamentosService {
         return pagamentos;
     }
 
+    public List<PagamentoDTO> getPagamentosDoPredioNovo(String email) {
+        List<Contrato> contratos = contratoRepository.findByAdministradorId(email);
+        List<PagamentoDTO> pagamentos = contratos.stream()
+                .flatMap(contrato -> contrato.getPagamentos().stream()) // Obtém todos os pagamentos dos contratos
+                .map(this::toPagamentoDTO) // Converte para DTO
+                .collect(Collectors.toList());
+
+        return pagamentos;
+    }
+
     public BigDecimal getTotalPagamentosPagosNoMes(String email) {
         LocalDate inicioMes = LocalDate.now().withDayOfMonth(1);
         LocalDate fimMes = LocalDate.now().withDayOfMonth(LocalDate.now().lengthOfMonth());
-
-        return pagamentosRepository.getTotalPagamentosPagosNoMes(email, inicioMes, fimMes);
+        BigDecimal total = pagamentosRepository.getTotalPagamentosPagosNoMes(email, inicioMes, fimMes);
+        System.out.println("Total de pagamentos pagos no mês: " + total);
+        return total != null ? total : BigDecimal.ZERO;
     }
 
     public BigDecimal getTotalPagamentosPendentesNoMes(String adminId) {
         LocalDate inicioMes = LocalDate.now().withDayOfMonth(1);
         LocalDate fimMes = LocalDate.now().withDayOfMonth(LocalDate.now().lengthOfMonth());
-
-        return pagamentosRepository.getTotalPagamentosPendentesNoMes(adminId, inicioMes, fimMes);
+        BigDecimal total = pagamentosRepository.getTotalPagamentosPendentesNoMes(adminId, inicioMes, fimMes);
+        System.out.println("Total de pagamentos pagos no mês: " + total);
+        return total != null ? total : BigDecimal.ZERO;
     }
 
     public List<PagamentoResumoDTO> getPagamentosPendentes(String adminId) {
         return pagamentosRepository.getPagamentosPendentes(adminId);
     }
 
-    public List<Pagamentos> getTodosPagamentosDoPredio(String adminId) {
-        return pagamentosRepository.getTodosPagamentosDoPredio(adminId);
+    public List<PagamentoResumoDTO> getTodosPagamentosDoPredio(String adminId) {
+        List<Pagamentos> pagamentos = pagamentosRepository.getTodosPagamentosDoPredio(adminId);
+        return pagamentos.stream().map(this::toResumoDTO).collect(Collectors.toList());
     }
 
     private PagamentoResumoDTO toResumoDTO(Pagamentos pagamento) {
@@ -131,6 +144,17 @@ public class PagamentosService {
                 pagamento.getIdApartamento(),
                 pagamento.getVencimento(),
                 pagamento.getValor(),
+                pagamento.getStatus()
+        );
+    }
+
+    private PagamentoDTO toPagamentoDTO(Pagamentos pagamento) {
+        return new PagamentoDTO(
+                pagamento.getId(),
+                pagamento.getTitular(),
+                pagamento.getIdApartamento(),
+                pagamento.getValor(),
+                pagamento.getVencimento(),
                 pagamento.getStatus()
         );
     }

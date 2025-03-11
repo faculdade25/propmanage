@@ -1,18 +1,17 @@
 package app.entity.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class InquilinoDTO {
+    private Long id;
     private String nome;
     private String email;
     private String telefone;
-
-    public InquilinoDTO(String nome, String email, String telefone) {
-        this.nome = nome;
-        this.email = email;
-        this.telefone = telefone;
-    }
 }

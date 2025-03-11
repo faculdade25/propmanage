@@ -26,8 +26,8 @@ public class Apartamento {
 	@JoinColumn(name = "predio_id", nullable = false)
 	private Predio predio;
 
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "contratos"})
 	@OneToMany(mappedBy = "apartamento", cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonIgnoreProperties("apartamento")
 	private List<Contrato> contratos;
 
 	@Override

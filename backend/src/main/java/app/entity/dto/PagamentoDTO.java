@@ -2,6 +2,7 @@ package app.entity.dto;
 
 import app.entity.StatusPagamento;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
@@ -9,6 +10,7 @@ import java.time.LocalDate;
 import java.util.Date;
 @Getter
 @Setter
+@NoArgsConstructor
 public class PagamentoDTO {
     private long id;
     private String titular;
@@ -24,9 +26,5 @@ public class PagamentoDTO {
         this.valor = valor;
         this.vencimento = vencimento;
         this.status = status;
-    }
-
-    public PagamentoDTO() {
-
     }
 }

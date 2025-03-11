@@ -71,6 +71,7 @@ public class UserController {
     @GetMapping("/inquilinos")
     public ResponseEntity<List<InquilinoDTO>> listarInquilinos(@AuthenticationPrincipal UserDetails userDetails) {
         String email = userDetails.getUsername();
+        System.out.println(email);
         List<InquilinoDTO> inquilinos = userService.listarInquilinos(email);
         return ResponseEntity.ok(inquilinos);
     }

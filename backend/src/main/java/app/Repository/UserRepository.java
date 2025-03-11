@@ -13,12 +13,10 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
 
-    @Query("SELECT DISTINCT new app.entity.dto.InquilinoDTO(u.nome, u.email, u.telefone) " +
+    @Query("SELECT DISTINCT new app.entity.dto.InquilinoDTO(u.id, CONCAT(u.nome, ' ', u.sobrenome), u.email, u.telefone) " +
             "FROM User u " +
             "JOIN u.contratos c " +
             "JOIN c.apartamento a " +
             "WHERE a.predio.id = :predioId AND u.role = 'USER'")
     List<InquilinoDTO> findInquilinosByPredio(@Param("predioId") Long predioId);
 }
-
-

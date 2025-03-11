@@ -114,9 +114,9 @@ public class PagamentosController {
     }
 
     @GetMapping("/predio/todos")
-    public ResponseEntity<List<Pagamentos>> getTodosPagamentosPredio(@AuthenticationPrincipal UserDetails userDetails) {
+    public ResponseEntity<List<PagamentoDTO>> getTodosPagamentosPredio(@AuthenticationPrincipal UserDetails userDetails) {
         String email = userDetails.getUsername();
-        List<Pagamentos> pagamentos = service.getTodosPagamentosDoPredio(email);
+        List<PagamentoDTO> pagamentos = service.getPagamentosDoPredioNovo(email);
         return ResponseEntity.ok(pagamentos);
     }
 
