@@ -1,0 +1,23 @@
+<div class="apartamentos">
+    <div class="header">
+        <div class="tittleAndButton">
+            <h1>Apartamentos</h1>
+            <button type="button" class="btn" (click)="openModal(tempApartamento)" style="background-color: #0F172A; color: white;">
+                Novo </button>
+        </div>
+        <div
+            style="border: 1px solid #3F3F46CC; width: 212px; height: 40px; border-radius: 6px; display: flex; justify-content: space-evenly; align-items: center;">
+            <div style="width: 16px; height: 16px; background-color: #FF3B30; border-radius: 50%;"></div>
+            <p style="margin: 0;">Ocupados</p>
+            <div style="width: 16px; height: 16px; background-color: #34C759; border-radius: 50%;"></div>
+            <p style="margin: 0;">Vazios</p>
+        </div>
+    </div>
+    <div class="container">
+        <div style=" margin-top: 20px; display: flex; flex-wrap: wrap; gap: 16px;">
+            <div ng (click)="openModal(apartamento)" class="ap" *ngFor="let apartamento of apartamentos" [ngClass]="apartamento.status.toLowerCase()">
+                <p class="number-ap">{{apartamento.apnum}}</p>
+            </div>
+        </div>
+    </div>
+</div>

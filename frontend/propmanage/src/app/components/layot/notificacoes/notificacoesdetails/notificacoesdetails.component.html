@@ -1,0 +1,65 @@
+<div class="p-6">
+  <!-- Header -->
+  <div class="mb-6">
+    <div class="flex flex-col gap-3">
+      <h2 class="text-2xl font-bold text-gray-800">Novo Contrato</h2>
+      <p class="text-gray-600 text-sm">
+        Registre um novo contrato para um apartamento. Preencha as informações do inquilino, 
+        defina as condições do contrato e a data de vigência. Certifique-se de que todos os 
+        dados estão corretos antes de confirmar.
+      </p>
+
+      <h3 class="text-xl font-semibold text-gray-800 mt-4">Perfil</h3>
+      <p class="text-gray-600 text-sm">
+        Nesta seção, você pode cadastrar um novo inquilino e definir suas informações básicas.
+        Para alterações em dados sensíveis, como documento de identificação para emissão de faturas, 
+        entre em contato com o suporte.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="space-y-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- Mensagem -->
+      <mat-form-field appearance="outline">
+        <mat-label>Mensagem</mat-label>
+        <input [(ngModel)]="message" matInput type="text">
+      </mat-form-field>
+
+      <!-- Data do Ocorrido -->
+      <mat-form-field appearance="outline">
+        <mat-label>Data do Ocorrido</mat-label>
+        <input [(ngModel)]="date" matInput type="date">
+      </mat-form-field>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <!-- Status -->
+    <div class="grid grid-cols-1">
+      <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="selectedStatus">
+          <mat-option value="" disabled><p>Selecione um Status</p></mat-option>
+          <mat-option value="CANCELADO"><p>CANCELADO</p></mat-option>
+          <mat-option value="PENDENTE"><p>PENDENTE</p></mat-option>
+          <mat-option value="RESOLVIDO"><p>RESOLVIDO</p></mat-option>
+          <mat-option value="PREVISTO"><p>PREVISTO</p></mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="flex justify-end gap-3 mt-8">
+    <button 
+      mat-raised-button
+      color="primary"
+      class="!bg-[#0F172A] !text-white" 
+      (click)="enviarAnuncio()"
+    >
+      Salvar
+    </button>
+  </div>
+</div>

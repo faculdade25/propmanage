@@ -1,0 +1,87 @@
+<div class="p-6">
+  <!-- Header -->
+  <div class="modal-header mb-4">
+    <div class="flex flex-col gap-2">
+      <h2 class="text-xl font-bold">Perfil</h2>
+      <p class="text-gray-600 text-sm">
+        Nesta seção, você pode cadastrar um novo inquilino e definir suas informações básicas.
+        Para alterações em dados sensíveis, como documento de identificação para emissão de faturas, entre em contato com o suporte.
+      </p>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="modal-body space-y-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- Primeiro Nome -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Primeiro Nome</mat-label>
+        <input matInput type="text" [(ngModel)]="inquilino.nome">
+      </mat-form-field>
+
+      <!-- Último Nome -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Último Nome</mat-label>
+        <input matInput type="text" [(ngModel)]="inquilino.sobrenome">
+      </mat-form-field>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <!-- Data de Nascimento -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Data de Nascimento</mat-label>
+        <input matInput type="date" [(ngModel)]="inquilino.nascimento">
+      </mat-form-field>
+
+      <!-- RG -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>RG</mat-label>
+        <input matInput type="text" [(ngModel)]="inquilino.rg">
+      </mat-form-field>
+
+      <!-- CPF -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>CPF</mat-label>
+        <input matInput type="text" [(ngModel)]="inquilino.cpf">
+      </mat-form-field>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- Email -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" [(ngModel)]="inquilino.email">
+      </mat-form-field>
+
+      <!-- Telefone -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Telefone</mat-label>
+        <input matInput type="tel" [(ngModel)]="inquilino.telefone">
+      </mat-form-field>
+    </div>
+
+    <div class="grid grid-cols-1">
+      <!-- Profissão -->
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Profissão</mat-label>
+        <input matInput type="text" [(ngModel)]="inquilino.profissao">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="modal-footer flex justify-end gap-2 mt-6">
+    <button 
+      mat-raised-button 
+      color="primary"
+      class="!bg-[#0F172A] !text-white"
+      (click)="enviarInquilino()"
+    >
+      Salvar
+    </button>
+  </div>
+</div>

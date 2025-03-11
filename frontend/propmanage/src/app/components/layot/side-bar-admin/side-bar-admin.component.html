@@ -1,0 +1,143 @@
+<div class="sidebar">
+    <div class="sidebar-header-holder">
+        <div class="sidebar-header">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="32" height="32" rx="8" fill="#353535" />
+                <g clip-path="url(#clip0_91_510)">
+                    <path
+                        d="M16 9.33337V22.6667M20.7141 11.286L11.286 20.7141M22.6667 16H9.33337M20.7141 20.7141L11.286 11.286"
+                        stroke="#FCFCFC" stroke-width="1.42857" stroke-linecap="round" stroke-linejoin="round" />
+                </g>
+                <defs>
+                    <clipPath id="clip0_91_510">
+                        <rect width="16" height="16" fill="white" transform="translate(8 8)" />
+                    </clipPath>
+                </defs>
+            </svg>
+            <div style="display: flex; flex-direction: column; gap: 2px;">
+                <h1>PropManage</h1>
+                <p>v.1.0.1</p>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar-content">
+        <div class="sidebar-group">
+            <div class="groudtitle">
+                <p class="title">Minha propriedade</p>
+            </div>
+            <div class="navItem" [class.active]="currentRoute === '/admin/dashboard'" (click)="navigateTo('/admin/dashboard')">
+                <svg width="16" height="16" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <mask id="mask0_382_1117" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="17"
+                        height="17">
+                        <rect x="0.745331" y="0.131226" width="16" height="16" fill="#D9D9D9" />
+                    </mask>
+                    <g mask="url(#mask0_382_1117)">
+                        <path
+                            d="M9.412 6.13123V2.13123H14.7453V6.13123H9.412ZM2.74533 8.79789V2.13123H8.07866V8.79789H2.74533ZM9.412 14.1312V7.46456H14.7453V14.1312H9.412ZM2.74533 14.1312V10.1312H8.07866V14.1312H2.74533ZM4.07866 7.46456H6.74533V3.46456H4.07866V7.46456ZM10.7453 12.7979H13.412V8.79789H10.7453V12.7979ZM10.7453 4.79789H13.412V3.46456H10.7453V4.79789ZM4.07866 12.7979H6.74533V11.4646H4.07866V12.7979Z"
+                            fill="#1C1B1F" />
+                    </g>
+                </svg>
+                <p>Dashboard</p>
+            </div>
+            <div class="navItem" [class.active]="currentRoute === '/admin/apartamentos'" (click)="navigateTo('/admin/apartamentos')">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <rect width="16" height="16" fill="url(#pattern0_91_629)" />
+                    <defs>
+                        <pattern id="pattern0_91_629" patternContentUnits="objectBoundingBox" width="1" height="1">
+                            <use xlink:href="#image0_91_629" transform="scale(0.0416667)" />
+                        </pattern>
+                        <image id="image0_91_629" width="24" height="24" preserveAspectRatio="none"
+                            xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAASElEQVR4nGNgGAWkAHt7t//EYIZBbwEDkfzBa4E9kUFkT2oQ0s0CBirxB84C+9E4wAVG48Ce0pyODqhelKCDAS+rBp8FIxMAADrQWVz4dN0BAAAAAElFTkSuQmCC" />
+                    </defs>
+                </svg>
+                <p>Apartamentos</p>
+            </div>
+        </div>
+        <div class="sidebar-group">
+            <div class="groudtitle">
+                <p class="title">Contratos</p>
+            </div>
+            <div class="navItem" [class.active]="currentRoute === '/admin/contratos'" (click)="navigateTo('/admin/contratos')">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M4 14.6666C3.44444 14.6666 2.97222 14.4722 2.58333 14.0833C2.19444 13.6944 2 13.2222 2 12.6666V12C2 11.6333 2.13056 11.3194 2.39167 11.0583C2.65278 10.7972 2.96667 10.6666 3.33333 10.6666H4V2.66665C4 2.29998 4.13056 1.98609 4.39167 1.72498C4.65278 1.46387 4.96667 1.33331 5.33333 1.33331H12.6667C13.0333 1.33331 13.3472 1.46387 13.6083 1.72498C13.8694 1.98609 14 2.29998 14 2.66665V12.6666C14 13.2222 13.8056 13.6944 13.4167 14.0833C13.0278 14.4722 12.5556 14.6666 12 14.6666H4ZM12 13.3333C12.1889 13.3333 12.3472 13.2694 12.475 13.1416C12.6028 13.0139 12.6667 12.8555 12.6667 12.6666V2.66665H5.33333V10.6666H10C10.3667 10.6666 10.6806 10.7972 10.9417 11.0583C11.2028 11.3194 11.3333 11.6333 11.3333 12V12.6666C11.3333 12.8555 11.3972 13.0139 11.525 13.1416C11.6528 13.2694 11.8111 13.3333 12 13.3333ZM6.66667 5.99998C6.47778 5.99998 6.31944 5.93609 6.19167 5.80831C6.06389 5.68053 6 5.5222 6 5.33331C6 5.14442 6.06389 4.98609 6.19167 4.85831C6.31944 4.73054 6.47778 4.66665 6.66667 4.66665H11.3333C11.5222 4.66665 11.6806 4.73054 11.8083 4.85831C11.9361 4.98609 12 5.14442 12 5.33331C12 5.5222 11.9361 5.68053 11.8083 5.80831C11.6806 5.93609 11.5222 5.99998 11.3333 5.99998H6.66667ZM6.66667 7.99998C6.47778 7.99998 6.31944 7.93609 6.19167 7.80831C6.06389 7.68053 6 7.5222 6 7.33331C6 7.14442 6.06389 6.98609 6.19167 6.85831C6.31944 6.73054 6.47778 6.66665 6.66667 6.66665H11.3333C11.5222 6.66665 11.6806 6.73054 11.8083 6.85831C11.9361 6.98609 12 7.14442 12 7.33331C12 7.5222 11.9361 7.68053 11.8083 7.80831C11.6806 7.93609 11.5222 7.99998 11.3333 7.99998H6.66667Z"
+                        fill="#3F3F46" />
+                </svg>
+                <p>Contratos</p>
+            </div>
+            <div class="navItem" [class.active]="currentRoute === '/admin/pagamentos'" (click)="navigateTo('/admin/pagamentos')">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M9.33329 8.66669C9.88885 8.66669 10.3611 8.47224 10.75 8.08335C11.1388 7.69447 11.3333 7.22224 11.3333 6.66669C11.3333 6.11113 11.1388 5.63891 10.75 5.25002C10.3611 4.86113 9.88885 4.66669 9.33329 4.66669C8.77774 4.66669 8.30552 4.86113 7.91663 5.25002C7.52774 5.63891 7.33329 6.11113 7.33329 6.66669C7.33329 7.22224 7.52774 7.69447 7.91663 8.08335C8.30552 8.47224 8.77774 8.66669 9.33329 8.66669ZM4.66663 10.6667C4.29996 10.6667 3.98618 10.536 3.72529 10.2747C3.46396 10.0138 3.33329 9.70002 3.33329 9.33335V4.00002C3.33329 3.63335 3.46396 3.31958 3.72529 3.05869C3.98618 2.79735 4.29996 2.66669 4.66663 2.66669H14C14.3666 2.66669 14.6806 2.79735 14.942 3.05869C15.2028 3.31958 15.3333 3.63335 15.3333 4.00002V9.33335C15.3333 9.70002 15.2028 10.0138 14.942 10.2747C14.6806 10.536 14.3666 10.6667 14 10.6667H4.66663ZM1.99996 13.3334C1.63329 13.3334 1.31951 13.2029 1.05863 12.942C0.797293 12.6807 0.666626 12.3667 0.666626 12V5.33335C0.666626 5.14446 0.730626 4.98602 0.858626 4.85802C0.986182 4.73046 1.1444 4.66669 1.33329 4.66669C1.52218 4.66669 1.68063 4.73046 1.80863 4.85802C1.93618 4.98602 1.99996 5.14446 1.99996 5.33335V12H12.6666C12.8555 12 13.0137 12.064 13.1413 12.192C13.2693 12.3196 13.3333 12.4778 13.3333 12.6667C13.3333 12.8556 13.2693 13.0138 13.1413 13.1414C13.0137 13.2694 12.8555 13.3334 12.6666 13.3334H1.99996ZM4.66663 5.33335C5.03329 5.33335 5.34707 5.20269 5.60796 4.94135C5.86929 4.68046 5.99996 4.36669 5.99996 4.00002H4.66663V5.33335ZM14 5.33335V4.00002H12.6666C12.6666 4.36669 12.7971 4.68046 13.058 4.94135C13.3193 5.20269 13.6333 5.33335 14 5.33335ZM4.66663 9.33335H5.99996C5.99996 8.96669 5.86929 8.65269 5.60796 8.39135C5.34707 8.13047 5.03329 8.00002 4.66663 8.00002V9.33335ZM12.6666 9.33335H14V8.00002C13.6333 8.00002 13.3193 8.13047 13.058 8.39135C12.7971 8.65269 12.6666 8.96669 12.6666 9.33335Z"
+                        fill="#3F3F46" />
+                </svg>
+                <p>Pagamentos</p>
+            </div>
+            <div class="navItem" [class.active]="currentRoute === '/admin/usuarios'" (click)="navigateTo('/admin/usuarios')">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <rect width="16" height="16" fill="url(#pattern0_91_629)" />
+                    <defs>
+                        <pattern id="pattern0_91_629" patternContentUnits="objectBoundingBox" width="1" height="1">
+                            <use xlink:href="#image0_91_629" transform="scale(0.0416667)" />
+                        </pattern>
+                        <image id="image0_91_629" width="24" height="24" preserveAspectRatio="none"
+                            xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAASElEQVR4nGNgGAWkAHt7t//EYIZBbwEDkfzBa4E9kUFkT2oQ0s0CBirxB84C+9E4wAVG48Ce0pyODqhelKCDAS+rBp8FIxMAADrQWVz4dN0BAAAAAElFTkSuQmCC" />
+                    </defs>
+                </svg>
+                <p>Usuários</p>
+            </div>
+        </div>
+        <div class="sidebar-group">
+            <div class="groudtitle">
+                <p class="title">Controles</p>
+            </div>
+            <div class="navItem" [class.active]="currentRoute === '/admin/notificacoes'" (click)="navigateTo('/admin/notificacoes')">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M7.99996 14.6667C8.73329 14.6667 9.33329 14.0667 9.33329 13.3334H6.66663C6.66663 14.0667 7.25996 14.6667 7.99996 14.6667ZM12 10.6667V7.33335C12 5.28669 10.9066 3.57335 8.99996 3.12002V2.66669C8.99996 2.11335 8.55329 1.66669 7.99996 1.66669C7.44663 1.66669 6.99996 2.11335 6.99996 2.66669V3.12002C5.08663 3.57335 3.99996 5.28002 3.99996 7.33335V10.6667L2.66663 12V12.6667H13.3333V12L12 10.6667Z"
+                        fill="#3F3F46" />
+                </svg>
+                <p>Notificações</p>
+            </div>
+            <div class="navItem" [class.active]="currentRoute === '/admin/configuracoes'" (click)="navigateTo('/admin/configuracoes')">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_93_1132)">
+                        <path
+                            d="M12.76 8.62664C12.7867 8.42664 12.8 8.21998 12.8 7.99998C12.8 7.78664 12.7867 7.57331 12.7533 7.37331L14.1067 6.31997C14.2267 6.22664 14.26 6.04664 14.1867 5.91331L12.9067 3.69998C12.8267 3.55331 12.66 3.50664 12.5133 3.55331L10.92 4.19331C10.5867 3.93998 10.2333 3.72664 9.83999 3.56664L9.59999 1.87331C9.57333 1.71331 9.43999 1.59998 9.27999 1.59998H6.71999C6.55999 1.59998 6.43332 1.71331 6.40666 1.87331L6.16666 3.56664C5.77333 3.72664 5.41333 3.94664 5.08666 4.19331L3.49332 3.55331C3.34666 3.49998 3.17999 3.55331 3.09999 3.69998L1.82666 5.91331C1.74666 6.05331 1.77333 6.22664 1.90666 6.31997L3.25999 7.37331C3.22666 7.57331 3.19999 7.79331 3.19999 7.99998C3.19999 8.20664 3.21333 8.42664 3.24666 8.62664L1.89333 9.67998C1.77333 9.77331 1.73999 9.95331 1.81333 10.0866L3.09333 12.3C3.17333 12.4466 3.33999 12.4933 3.48666 12.4466L5.07999 11.8066C5.41333 12.06 5.76666 12.2733 6.15999 12.4333L6.39999 14.1266C6.43333 14.2866 6.55999 14.4 6.71999 14.4H9.27999C9.43999 14.4 9.57333 14.2866 9.59333 14.1266L9.83333 12.4333C10.2267 12.2733 10.5867 12.06 10.9133 11.8066L12.5067 12.4466C12.6533 12.5 12.82 12.4466 12.9 12.3L14.18 10.0866C14.26 9.93997 14.2267 9.77331 14.1 9.67998L12.76 8.62664ZM7.99999 10.4C6.67999 10.4 5.59999 9.31998 5.59999 7.99998C5.59999 6.67998 6.67999 5.59998 7.99999 5.59998C9.31999 5.59998 10.4 6.67998 10.4 7.99998C10.4 9.31998 9.31999 10.4 7.99999 10.4Z"
+                            fill="#3F3F46" />
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_93_1132">
+                            <rect width="16" height="16" fill="white" />
+                        </clipPath>
+                    </defs>
+                </svg>
+                <p>Configurações</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar-footer" (click)="navigateTo('/login')">
+
+        <div style="display: flex; flex-direction: column; margin-right: 10px;">
+            <h1>Sair</h1>
+        </div>
+        <svg width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_91_544)">
+                <path
+                    d="M11.3334 4.66667L10.3934 5.60667L12.1134 7.33333H5.33337V8.66667H12.1134L10.3934 10.3867L11.3334 11.3333L14.6667 8L11.3334 4.66667ZM2.66671 3.33333H8.00004V2H2.66671C1.93337 2 1.33337 2.6 1.33337 3.33333V12.6667C1.33337 13.4 1.93337 14 2.66671 14H8.00004V12.6667H2.66671V3.33333Z"
+                    fill="#3F3F46" />
+            </g>
+            <defs>
+                <clipPath id="clip0_91_544">
+                    <rect width="16" height="16" fill="white" />
+                </clipPath>
+            </defs>
+        </svg>
+    </div>
+
+
+
+</div>
