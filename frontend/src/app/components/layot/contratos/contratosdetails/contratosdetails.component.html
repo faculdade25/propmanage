@@ -1,163 +1,96 @@
 <div class="p-6">
-    <!-- Header -->
+  <!-- Inquilino Section -->
+  <div class="section mb-6">
     <div class="modal-header mb-4">
       <div class="flex flex-col gap-2">
         <h2 class="text-xl font-bold">Perfil</h2>
         <p class="text-gray-600 text-sm">
-          Nesta seção, você pode cadastrar um novo inquilino e definir suas informações básicas.
+          Nesta seção, você pode selecionar um inquilino e definir suas informações básicas.
           Para alterações em dados sensíveis, como documento de identificação para emissão de faturas, entre em contato com o suporte.
         </p>
       </div>
     </div>
-  
-    <!-- Body -->
-    <div class="modal-body space-y-4">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <!-- Primeiro Nome -->
-        <mat-form-field appearance="outline" class="w-full">
-          <mat-label>Primeiro Nome</mat-label>
-          <input matInput type="text">
-        </mat-form-field>
-  
-        <!-- Último Nome -->
-        <mat-form-field appearance="outline" class="w-full">
-          <mat-label>Último Nome</mat-label>
-          <input matInput type="text">
-        </mat-form-field>
-      </div>
-  
-      <mat-divider></mat-divider>
-  
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <!-- Data de Nascimento -->
-        <mat-form-field appearance="outline" class="w-full">
-          <mat-label>Data de Nascimento</mat-label>
-          <input matInput type="date">
-        </mat-form-field>
-  
-        <!-- RG -->
-        <mat-form-field appearance="outline" class="w-full">
-          <mat-label>RG</mat-label>
-          <input matInput type="text">
-        </mat-form-field>
-  
-        <!-- CPF -->
-        <mat-form-field appearance="outline" class="w-full">
-          <mat-label>CPF</mat-label>
-          <input matInput type="text" mask="000.000.000-00">
-        </mat-form-field>
-      </div>
-  
-      <mat-divider></mat-divider>
-  
+    <div class="modal-body">
       <div class="grid grid-cols-1">
-        <!-- Profissão -->
-        <mat-form-field appearance="outline" class="w-full">
-          <mat-label>Profissão</mat-label>
-          <input matInput type="text">
-        </mat-form-field>
-      </div>
-      <div class="grid grid-cols-1">
-        <!-- Profissão -->
-        <mat-form-field appearance="outline" class="w-full">
-          <mat-label>Remuneração</mat-label>
-          <input matInput type="text">
-        </mat-form-field>
-      </div>
-      <div class="grid grid-cols-1">
-        <mat-form-field appearance="outline">
-          <mat-label>Selecione um inquilo</mat-label>
-          <mat-select>
-            <mat-option value="" disabled selected>Selecione um Status</mat-option>
-            <mat-option value="option1">Opção 1</mat-option>
-            <mat-option value="option2">Opção 2</mat-option>
-            <mat-option value="option3">Opção 3</mat-option>
-            <mat-option value="option4">Opção 4</mat-option>
+        <mat-form-field>
+          <mat-label>Selecione um inquilino</mat-label>
+          <mat-select [(ngModel)]="selectedInquilino">
+            <mat-option value="" disabled selected><p>Selecione um inquilino</p></mat-option>
+            <mat-option *ngFor="let inquilino of inquilinos" [value]="inquilino.id">
+              <p>{{ inquilino.nome }}</p>
+            </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
     </div>
-
+  </div>
+  <div class="section mb-6">
     <div class="modal-header mb-4">
-        <div class="flex flex-col gap-2">
-          <h2 class="text-xl font-bold">Aluguel</h2>
-          <p class="text-gray-600 text-sm">
-            Nesta seção, você pode visualizar e gerenciar as informações do aluguel, incluindo valores, vencimentos e status de pagamento.
-            Para qualquer ajuste contratual, entre em contato com a administração.
-          </p>
-        </div>
+      <div class="flex flex-col gap-2">
+        <h2 class="text-xl font-bold">Aluguel</h2>
+        <p class="text-gray-600 text-sm">
+          Nesta seção, você pode visualizar e gerenciar as informações do aluguel, incluindo valores, vencimentos e status de pagamento.
+          Para qualquer ajuste contratual, entre em contato com a administração.
+        </p>
+      </div>
+    </div>
+
+    <div class="modal-body space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <mat-form-field class="w-full">
+          <mat-label>Condominio</mat-label>
+          <input [(ngModel)]="condominioPrice" matInput type="text">
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+          <mat-label>IPTU(mensal)</mat-label>
+          <input [(ngModel)]="iptuPrice" matInput type="text">
+        </mat-form-field>
       </div>
 
-      <div class="modal-body space-y-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <!-- Primeiro Nome -->
-          <mat-form-field appearance="outline" class="w-full">
-            <mat-label>Condominio</mat-label>
-            <input matInput type="text">
-          </mat-form-field>
-    
-          <!-- Último Nome -->
-          <mat-form-field appearance="outline" class="w-full">
-            <mat-label>IPTU(mensal)</mat-label>
-            <input matInput type="text">
-          </mat-form-field>
-        </div>
-    
-        <mat-divider></mat-divider>
-    
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <!-- Data de Nascimento -->
-          <mat-form-field appearance="outline" class="w-full">
-            <mat-label>Internet</mat-label>
-            <input matInput type="text">
-          </mat-form-field>
-    
-          <!-- RG -->
-          <mat-form-field appearance="outline" class="w-full">
-            <mat-label>Mensalidade</mat-label>
-            <input matInput type="text">
-          </mat-form-field>
-    
-        </div>
-    
-        <mat-divider></mat-divider>
-    
-        <div class="grid grid-cols-1">
-          <mat-form-field appearance="outline">
-            <mat-label>Selecione um inquilo</mat-label>
-            <mat-select>
-              <mat-option value="" disabled selected>Selecione um Status</mat-option>
-              <mat-option value="option1">Opção 1</mat-option>
-              <mat-option value="option2">Opção 2</mat-option>
-              <mat-option value="option3">Opção 3</mat-option>
-              <mat-option value="option4">Opção 4</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <mat-form-field class="w-full">
+          <mat-label>Internet</mat-label>
+          <input [(ngModel)]="internetPrice" matInput type="text">
+        </mat-form-field>
 
-      
-  
-    <!-- Footer -->
-    <div class="modal-footer flex justify-end gap-2 mt-6">
-      <button 
-        mat-raised-button 
-        color="warn"
-        [disabled]="true"
-        class="!bg-[#FF2D55] !text-white"
-      >
-        Apagar
-      </button>
-      
-      <button 
-        mat-raised-button 
-        color="primary"
-        class="!bg-[#0F172A] !text-white"
-      >
-        Salvar
-      </button>
+        <mat-form-field class="w-full">
+          <mat-label>Mensalidade</mat-label>
+          <input [(ngModel)]="aluguelPrice" matInput type="text">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Selecione um apartamento</mat-label>
+          <mat-select [(ngModel)]="apnum">
+            <mat-option value="" disabled selected><p>Selecione um inquilino</p></mat-option>
+            <mat-option *ngFor="let apartamento of apartamentos" [value]="apartamento.id">
+              <p>{{ apartamento.apnum }}</p>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+      </div>
+      <div class="grid grid-cols-1">
+        <mat-form-field>
+          <mat-label>Selecione um status</mat-label>
+          <mat-select [(ngModel)]="statusSelecionado">
+            <mat-option value="" disabled selected>Selecione um Status</mat-option>
+            <mat-option value="DEFERIDO"><p>DEFERIDO</p></mat-option>
+            <mat-option value="INDEFERIDO"><p>INDEFERIDO</p></mat-option>
+            <mat-option value="CANCELADO"><p>CANCELADO</p></mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
     </div>
   </div>
-  
-  
-  
+
+  <!-- Footer -->
+  <div class="modal-footer flex justify-end gap-2 mt-6">
+    <button 
+      mat-raised-button 
+      color="primary"
+      class="!bg-[#0F172A] !text-white" (click)="setUpNewContract()"
+    >
+      Salvar
+    </button>
+  </div>
+</div>

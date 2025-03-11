@@ -4,6 +4,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ContratosdetailsComponent } from './contratosdetails/contratosdetails.component';
 import { CommonModule } from '@angular/common';
 import { Route, Router } from '@angular/router';
+import { ContratoDTOFull } from '../../../../dto/ContratoDTOFull';
+import { ContratosService } from '../../../services/contratos.service';
+import { ContractsService } from '../../../services/contracts.service';
 
 @Component({
   selector: 'app-contratos',
@@ -14,9 +17,21 @@ import { Route, Router } from '@angular/router';
 })
 export class ContratosComponent {
 
-  constructor(private router: Router) { }
+  contratos: ContratoDTOFull[] = [];
+
+  constructor(private router: Router, private contratoService: ContractsService) { 
+    this.loadContratos();
+  }
 
   openModal() {
     this.router.navigate(['/admin/contratosdetails']);
+  }
+
+  loadContratos(){
+    this.contratoService.allContratosAdmin().subscribe(
+      (data) => {
+        this.contratos = data;
+      }
+    );
   }
 }

@@ -1,129 +1,89 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDividerModule } from '@angular/material/divider'; 
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelect } from '@angular/material/select';
 import { MatOption } from '@angular/material/select';
-
-
-
-
-interface Tenant {
-  id: number;
-  nome: string;
-  email: string;
-  telefone: string;
-}
-
-interface NewTenant {
-  nome: string;
-  sobrenome: string;
-  email: string;
-  telefone: string;
-  cpf: string;
-  rg: string;
-  profissao: string;
-  nascimento: string;
-}
-
-// Componente atualizado
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { ContractsService } from '../../../../services/contracts.service';
-import { ContratosService } from '../../../../services/contratos.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { InquilinoDTO } from '../../../../../dto/requests/InquilinoMinDTO';
+import { environment } from '../../../../../../enviroments/enviroment';
+import { ContratoDTOFull, StatusContrato } from '../../../../../dto/ContratoDTOFull';
+import { ApartamentoDTO } from '../../../../../dto/ApartamentoDTO';
+import { Router } from '@angular/router';
+
 
 @Component({
-  imports: [CommonModule, ReactiveFormsModule,FormsModule, MatFormFieldModule,  MatDividerModule, MatButtonModule, MatInputModule, MatSelect, MatOption],
+  imports: [CommonModule, FormsModule, MatFormFieldModule,  MatDividerModule, MatButtonModule, MatInputModule, MatSelect, MatOption, NgFor],
   selector: 'app-contratosdetails',
   templateUrl: './contratosdetails.component.html',
   styleUrls: ['./contratosdetails.component.scss']
 })
-export class ContratosdetailsComponent implements OnInit {
-  contractForm: FormGroup;
-  newTenantForm: FormGroup;
-  tenants: Tenant[] = [];
-  loading = false;
-  activeTab: 'existente' | 'novo' = 'existente';
+export class ContratosdetailsComponent {
 
-  constructor(
-    private fb: FormBuilder,
-    private contratosService: ContratosService
-  ) {
-    this.contractForm = this.fb.group({
-      titularId: this.fb.control<number | null>(null, Validators.required),
-      apnum: this.fb.nonNullable.control(1, [Validators.required, Validators.min(1)]),
-      valorCondominio: this.fb.nonNullable.control(500.00, Validators.required),
-      valorIptu: this.fb.nonNullable.control(150.00, Validators.required),
-      valorInternet: this.fb.nonNullable.control(100.00, Validators.required),
-      valorAluguel: this.fb.nonNullable.control(2000.00, Validators.required),
-      entrada: this.fb.nonNullable.control('', Validators.required),
-      processo: this.fb.nonNullable.control('', Validators.required),
-      referente: this.fb.nonNullable.control(2025, Validators.required),
-      dataAceite: this.fb.nonNullable.control('', Validators.required),
-      status: this.fb.nonNullable.control('DEFERIDO', Validators.required)
-    });
+  inquilinos: InquilinoDTO[] = [];
+  apartamentos: ApartamentoDTO[] = [];
+  contrato!: ContratoDTOFull;
+  selectedInquilino: number = 0;
+  statusSelecionado: string = "";
+  internetPrice: number = 0;
+  apnum: number = 0;
+  iptuPrice: number = 0;
+  condominioPrice: number = 0;
+  aluguelPrice: number = 0;
+  entrada: Date = new Date();
+  processo: string = "ALUGUEL";
+  referente: number = new Date().getFullYear();
+  apiUrl = environment.apiUrl;
 
-    this.newTenantForm = this.fb.group({
-      nome: this.fb.nonNullable.control('', Validators.required),
-      sobrenome: this.fb.nonNullable.control('', Validators.required),
-      email: this.fb.nonNullable.control('', [Validators.required, Validators.email]),
-      telefone: this.fb.nonNullable.control('', Validators.required),
-      cpf: this.fb.nonNullable.control('', Validators.required),
-      rg: this.fb.nonNullable.control('', Validators.required),
-      profissao: this.fb.nonNullable.control('', Validators.required),
-      nascimento: this.fb.nonNullable.control('', Validators.required)
-    });
+  constructor(private http: HttpClient, private router: Router) {
+    this.getInquilinos();
+    this.getApartamentos();
+    console.log(this.inquilinos);
   }
 
-  ngOnInit() {
-    this.loadTenants();
+  getInquilinos(){
+    this.http.get<InquilinoDTO[]>(this.apiUrl + "/predios/inquilinos").subscribe(
+      (data) => {
+        this.inquilinos = data;
+        console.log(this.inquilinos);
+        console.log(data);
+      }
+    );
   }
 
-  loadTenants() {
-    this.loading = true;
-    this.contratosService.getTenants().subscribe({
-      next: (tenants) => this.tenants = tenants,
-      error: (error) => console.error('Erro ao carregar inquilinos:', error),
-      complete: () => this.loading = false
-    });
+  getApartamentos() {
+    this.http.get<ApartamentoDTO[]>(this.apiUrl + "/predios/apartamentos").subscribe(
+      (data) => {
+        this.apartamentos = data.filter(apartamento => apartamento.status === "VAGO");
+      }
+    );
   }
 
-  createTenant() {
-    if (this.newTenantForm.invalid) return;
-    
-    this.loading = true;
-    this.contratosService.createTenant(this.newTenantForm.value).subscribe({
-      next: (newTenant) => {
-        this.tenants.push(newTenant);
-        this.contractForm.patchValue({ titularId: newTenant.id });
-        this.activeTab = 'existente';
+  setUpNewContract() {
+    this.http.post(`${this.apiUrl}/api/contratos/create`, {
+      titularId: this.selectedInquilino,
+      apnum: this.apnum,
+      valorCondominio: parseFloat(this.condominioPrice.toString()),
+      valorIptu: parseFloat(this.iptuPrice.toString()),
+      valorInternet: parseFloat(this.internetPrice.toString()),
+      valorAluguel: parseFloat(this.aluguelPrice.toString()),
+      entrada: new Date(this.entrada).toISOString().split('T')[0], // Formata entrada para "YYYY-MM-DD"
+      processo: this.processo,
+      referente: this.referente,
+      dataAceite: new Date().toISOString().split('T')[0], // Formata dataAceite para "YYYY-MM-DD"
+      status: StatusContrato[this.statusSelecionado as keyof typeof StatusContrato]
+    }).subscribe({
+      next: (response) => {
+        console.log("Contrato cadastrado com sucesso!", response);
+        this.router.navigate(['/admin/contratos']);
       },
-      error: (error) => console.error('Erro ao criar inquilino:', error),
-      complete: () => this.loading = false
+      error: (error) => {
+        console.error("Erro ao cadastrar contrato:", error);
+      }
     });
   }
-
-  submitContract() {
-    if (this.contractForm.invalid) return;
-    
-    const rawValues = this.contractForm.getRawValue();
-    const payload = {
-      ...rawValues,
-      titularId: rawValues.titularId as number,
-      entrada: new Date(rawValues.entrada).toISOString(),
-      dataAceite: new Date(rawValues.dataAceite).toISOString()
-    };
-
-    if (typeof payload.titularId !== 'number' || isNaN(new Date(payload.entrada).getTime())) {
-      console.error('Valores inválidos no formulário');
-      return;
-    }
-
-    console.log('Dados do contrato:', payload);
-  }
+  
 }
