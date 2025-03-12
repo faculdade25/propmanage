@@ -19,9 +19,10 @@ import { UsuariosComponent } from './components/layot/usuarios/usuarios.componen
 import { NotificacoesComponent } from './components/layot/notificacoes/notificacoes.component';
 import { ConfiguracoesComponent } from './components/layot/configuracoes/configuracoes.component';
 import { ContratosdetailsComponent } from './components/layot/contratos/contratosdetails/contratosdetails.component';
+import { LandingComponent } from './components/landing/landing.component';
 
 export const routes: Routes = [
-    { path: "", redirectTo: "login", pathMatch: "full" },
+    { path: "", component: LandingComponent},
     {path: "login", component: LoginComponent},
     {
       path: 'user',
