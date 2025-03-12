@@ -17,17 +17,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Passo 2: Configurar Docker Compose
-      - name: Set up Docker Compose
-        run: |
-          docker-compose --version
-
+      # Passo 2: Configurar o Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        
       # Passo 3: Subir os containers com Docker Compose
       - name: Start containers
         run: |
           docker-compose up -d
-
-
+          
       # Passo 6: Build do projeto
       - name: Build project
         run: |
