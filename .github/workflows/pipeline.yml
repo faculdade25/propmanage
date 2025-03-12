@@ -31,7 +31,7 @@ jobs:
           java-version: ${{ matrix.java-version }}
       
       - name: Build Java project
-        run: mvn clean package --file pom.xml
+        run: mvn clean package --file backend/propmanage/pom.xml
       
       - name: Test Java project
-        run: mvn test --file pom.xml
+        run: mvn test --file backend/propmanage/pom.xml
