@@ -4,13 +4,13 @@ on:
     branches: [ main ]
     paths:
       - '**/*.java'
-      - 'pom.xml'
+      - './'
       - '.github/workflows/backend.yml'
   pull_request:
     branches: [ main ]
     paths:
       - '**/*.java'
-      - 'pom.xml'
+      - 'backend/propmanage/pom.xml'
       - '.github/workflows/backend.yml'
 
 jobs:
