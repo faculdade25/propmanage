@@ -12,6 +12,7 @@ on:
       - '**/*.java'
       - 'backend/propmanage/pom.xml'
       - '.github/workflows/backend.yml'
+  workflow_dispatch: # Adicionado para permitir execução manual
 
 jobs:
   build-and-test:
