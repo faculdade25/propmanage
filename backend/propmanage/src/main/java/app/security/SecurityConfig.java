@@ -62,13 +62,11 @@ public class SecurityConfig {
                                 "/api/v1/user/login",
                                 "/api/v1/user/register",
                                 "/api/v1/test/**",
-                                "/api/clientes/login"
-                        ).permitAll()
-                        .anyRequest().authenticated()
-                )
+                                "/api/clientes/login")
+                        .permitAll()
+                        .anyRequest().authenticated())
                 .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
@@ -77,19 +75,16 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.setAllowedOrigins(List.of("http://localhost:5173", "http://192.168.0.105:3000", "http://localhost:3000", "http://localhost:4200", "http://localhost:80", "http://localhost", "http://192.168.0.102:80", "http://192.168.0.102"));
-        corsConfig.setAllowedOrigins(List.of());
+        corsConfig.setAllowedOriginPatterns(List.of("*"));
         corsConfig.setAllowedMethods(List.of(
                 HttpMethod.GET.name(),
                 HttpMethod.POST.name(),
                 HttpMethod.PUT.name(),
                 HttpMethod.DELETE.name(),
-                HttpMethod.OPTIONS.name()
-        ));
+                HttpMethod.OPTIONS.name()));
         corsConfig.setAllowedHeaders(List.of(
                 HttpHeaders.CONTENT_TYPE,
-                HttpHeaders.AUTHORIZATION
-        ));
+                HttpHeaders.AUTHORIZATION));
         corsConfig.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

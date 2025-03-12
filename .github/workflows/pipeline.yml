@@ -1,37 +1,37 @@
-name: CI Pipeline
-
+name: Backend CI/CD Pipeline
 on:
   push:
-    branches:
-      - main  # Executa a pipeline quando houver push na branch main
+    branches: [ main ]
+    paths:
+      - '**/*.java'
+      - 'pom.xml'
+      - '.github/workflows/backend.yml'
   pull_request:
-    branches:
-      - main  # Executa a pipeline quando houver um pull request para a branch main
+    branches: [ main ]
+    paths:
+      - '**/*.java'
+      - 'pom.xml'
+      - '.github/workflows/backend.yml'
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest  # Executa em um ambiente Ubuntu
-
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java-version: [ '17' ]
+    
     steps:
-      # Passo 1: Checkout do código
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
-
-      # Passo 2: Configurar o Docker Buildx
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
         
-      # Passo 3: Subir os containers com Docker Compose
-      - name: Start containers
-        run: |
-          docker-compose up -d
-          
-      # Passo 6: Build do projeto
-      - name: Build project
-        run: |
-          docker-compose build
-
-      # Passo 7: Parar os containers após os testes
-      - name: Stop containers
-        run: |
-          docker-compose down
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: ${{ matrix.java-version }}
+      
+      - name: Build Java project
+        run: mvn clean package --file pom.xml
+      
+      - name: Test Java project
+        run: mvn test --file pom.xml
