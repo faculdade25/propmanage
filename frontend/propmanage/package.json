@@ -4,9 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "CI=false && ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test":  "ng test"
   },
   "private": true,
   "dependencies": {
@@ -21,7 +21,6 @@
     "@angular/platform-browser-dynamic": "^19.2.1",
     "@angular/router": "^19.2.1",
     "@spartan-ng/brain": "0.0.1-alpha.417",
-    "@tailwindcss/postcss": "^4.0.10",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "js-cookie": "^3.0.5",
@@ -37,16 +36,13 @@
     "@angular/compiler-cli": "^19.2.1",
     "@spartan-ng/cli": "^0.0.1-alpha.410",
     "@types/jasmine": "~5.1.0",
-    "autoprefixer": "^10.4.20",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "postcss": "^8.5.3",
     "tailwind-merge": "^2.2.0",
-    "tailwindcss": "^4.0.12",
     "tailwindcss-animate": "^1.0.6",
     "typescript": "~5.8.2"
   }
